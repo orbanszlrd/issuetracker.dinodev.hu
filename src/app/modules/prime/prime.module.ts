@@ -13,6 +13,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { MenubarModule } from 'primeng/menubar';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RatingModule } from 'primeng/rating';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
@@ -31,6 +33,8 @@ const Prime = [
   MenubarModule,
   PanelModule,
   PasswordModule,
+  ProgressBarModule,
+  ProgressSpinnerModule,
   RatingModule,
   TableModule,
   TabViewModule,
