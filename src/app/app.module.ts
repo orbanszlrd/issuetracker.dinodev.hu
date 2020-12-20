@@ -8,7 +8,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
 
-import { PrimeModule } from './modules/prime/prime.module';
 import { SharedModule } from './modules/shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +22,6 @@ import { IndexEffects } from './store/effects/index.effects';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    PrimeModule,
     SharedModule,
     StoreModule.forRoot({ app: appReducer }),
     EffectsModule.forRoot(IndexEffects),
