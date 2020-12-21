@@ -15,9 +15,10 @@ import { AppComponent } from './app.component';
 
 import { appReducer } from './store/reducers/app.reducer';
 import { IndexEffects } from './store/effects/index.effects';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

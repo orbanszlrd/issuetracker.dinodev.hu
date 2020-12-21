@@ -18,6 +18,7 @@ export class MenubarComponent implements OnInit {
     this.items = [
       {
         label: 'Home',
+        icon: 'pi pi-home',
         command: () => this.router.navigateByUrl('/'),
       },
     ];
