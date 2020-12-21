@@ -1,22 +1,7 @@
 <div id="myDiv"></div>
 
-<button
-  pButton
-  icon="pi pi-chevron-right"
-  iconPos="right"
-  label="Menu"
-  (click)="showSidebar()"
-  class="p-button-text"
-  [style]="{
-    position: 'fixed',
-    top: '4rem',
-    right: '0.5rem',
-    zIndex: '9999'
-  }"
-></button>
-
 <p-sidebar
-  [(visible)]="show"
+  [(visible)]="showSidebar"
   [showCloseIcon]="false"
   styleClass="p-sidebar-sm"
   [modal]="false"

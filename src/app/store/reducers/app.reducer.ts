@@ -4,10 +4,12 @@ import * as actions from '../actions/app.actions';
 
 interface ApplicationState {
   isLoading: boolean;
+  showSidebar: boolean;
 }
 
 export const initialState: ApplicationState = {
   isLoading: true,
+  showSidebar: false,
 };
 
 export const appReducer = createReducer(
@@ -15,5 +17,9 @@ export const appReducer = createReducer(
   on(actions.setIsLoading, (state, action) => ({
     ...state,
     isLoading: action.isLoading,
+  })),
+  on(actions.toggleSidebar, (state) => ({
+    ...state,
+    showSidebar: !state.showSidebar,
   }))
 );

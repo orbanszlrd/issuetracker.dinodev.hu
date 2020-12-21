@@ -11,6 +11,7 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SanitizeHtmlPipe,
     MenubarComponent,
     SidebarComponent,
+    ToolbarComponent,
   ],
   imports: [CommonModule, PrimeModule],
   exports: [
@@ -29,6 +31,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SanitizeHtmlPipe,
     LoaderComponent,
     MenubarComponent,
+    ToolbarComponent,
     SidebarComponent,
   ],
   providers: [DatePipe],

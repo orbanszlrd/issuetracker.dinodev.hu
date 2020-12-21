@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,13 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  show: boolean = false;
+  private subscriptions: Subscription[] = [];
 
-  constructor() {}
+  showSidebar: boolean = false;
 
-  showSidebar(): void {
-    this.show = !this.show;
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.subscriptions.push(
+      this.store
+        .select<any>((state: any) => state)
+        .subscribe((state: any) => {
+          this.showSidebar = state.app.showSidebar;
+        })
+    );
   }
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
 }
