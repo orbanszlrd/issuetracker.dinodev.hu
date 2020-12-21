@@ -10,9 +10,15 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 
 import { LoaderComponent } from './components/loader/loader.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [LoaderComponent, SanitizeHtmlPipe, MenubarComponent],
+  declarations: [
+    LoaderComponent,
+    SanitizeHtmlPipe,
+    MenubarComponent,
+    SidebarComponent,
+  ],
   imports: [CommonModule, PrimeModule],
   exports: [
     CommonModule,
@@ -23,6 +29,7 @@ import { MenubarComponent } from './components/menubar/menubar.component';
     SanitizeHtmlPipe,
     LoaderComponent,
     MenubarComponent,
+    SidebarComponent,
   ],
   providers: [DatePipe],
 })

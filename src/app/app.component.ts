@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as AppActions from './store/actions/app.actions';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
