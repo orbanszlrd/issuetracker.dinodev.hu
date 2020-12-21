@@ -16,8 +16,10 @@ import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RatingModule } from 'primeng/rating';
+import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { ToolbarModule } from 'primeng/toolbar';
 
 const Prime = [
   ButtonModule,
@@ -36,8 +38,10 @@ const Prime = [
   ProgressBarModule,
   ProgressSpinnerModule,
   RatingModule,
+  SidebarModule,
   TableModule,
   TabViewModule,
+  ToolbarModule,
 ];
 
 @NgModule({

@@ -1,14 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit {
   private subscriptions: Subscription[] = [];
+
+  showSidebar: boolean = false;
 
   constructor(private store: Store) {}
 
@@ -17,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.store
         .select<any>((state: any) => state)
         .subscribe((state: any) => {
-          //          console.log(state);
+          this.showSidebar = state.app.showSidebar;
         })
     );
   }

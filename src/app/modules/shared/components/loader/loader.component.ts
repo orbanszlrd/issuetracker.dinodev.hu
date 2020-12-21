@@ -11,7 +11,7 @@ import * as AppActions from '../../../../store/actions/app.actions';
   styleUrls: ['./loader.component.scss'],
 })
 export class LoaderComponent implements OnInit {
-  isLoading$: Observable<any>;
+  isLoading$: Observable<boolean>;
 
   constructor(private store: Store<{ isLoading: boolean }>) {
     this.isLoading$ = this.store.select((state: any) => state.app.isLoading);
@@ -24,6 +24,6 @@ export class LoaderComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.loaded();
-    }, 2000);
+    }, 1000);
   }
 }
