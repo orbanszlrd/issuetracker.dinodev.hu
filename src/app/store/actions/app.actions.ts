@@ -6,3 +6,5 @@ export const setIsLoading = createAction(
 );
 
 export const toggleSidebar = createAction('[App Module] toggle Sidebar');
+
+export const hideSidebar = createAction('[App Module] hide Sidebar');

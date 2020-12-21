@@ -12,6 +12,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MenubarComponent,
     SidebarComponent,
     ToolbarComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, PrimeModule],
   exports: [
@@ -33,6 +35,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MenubarComponent,
     ToolbarComponent,
     SidebarComponent,
+    FooterComponent,
   ],
   providers: [DatePipe],
 })

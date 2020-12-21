@@ -1,6 +1,7 @@
-<div class="container">
-  <app-loader></app-loader>
-  <app-toolbar></app-toolbar>
-  <app-sidebar></app-sidebar>
+<app-loader></app-loader>
+<app-toolbar></app-toolbar>
+<app-sidebar></app-sidebar>
+<div class="container" (click)="hideSidebar()">
   <router-outlet></router-outlet>
 </div>
+<app-footer></app-footer>
