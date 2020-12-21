@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
+import * as appSelectors from '../../../../store/selectors/app.selectors';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -17,9 +19,9 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.store
-        .select<any>((state: any) => state)
-        .subscribe((state: any) => {
-          this.showSidebar = state.app.showSidebar;
+        .select(appSelectors.showSidebar)
+        .subscribe((showSidebar: boolean) => {
+          this.showSidebar = showSidebar;
         })
     );
   }
