@@ -3,7 +3,6 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4rem;
   background-color: lightgray;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
 }
@@ -18,10 +17,10 @@ footer nav {
 }
 
 footer ul {
+  list-style: none;
   display: inline-block;
   overflow: auto;
   margin: 0;
-  list-style: none;
 }
 
 footer li {
