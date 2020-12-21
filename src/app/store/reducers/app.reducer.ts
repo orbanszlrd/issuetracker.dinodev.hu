@@ -21,5 +21,9 @@ export const appReducer = createReducer(
   on(actions.toggleSidebar, (state) => ({
     ...state,
     showSidebar: !state.showSidebar,
+  })),
+  on(actions.hideSidebar, (state) => ({
+    ...state,
+    showSidebar: false,
   }))
 );
