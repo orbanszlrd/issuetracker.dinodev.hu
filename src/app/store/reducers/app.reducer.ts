@@ -9,7 +9,7 @@ interface ApplicationState {
 
 export const initialState: ApplicationState = {
   isLoading: true,
-  showSidebar: false,
+  showSidebar: true,
 };
 
 export const appReducer = createReducer(
