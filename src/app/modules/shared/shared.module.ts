@@ -7,6 +7,7 @@ import { DatePipe } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PrimeModule } from '../prime/prime.module';
+import { FirebaseModule } from '../firebase/firebase.module';
 
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 
@@ -25,7 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ToolbarComponent,
     FooterComponent,
   ],
-  imports: [CommonModule, PrimeModule, FontAwesomeModule],
+  imports: [CommonModule, PrimeModule, FirebaseModule, FontAwesomeModule],
   exports: [
     CommonModule,
     HttpClientModule,

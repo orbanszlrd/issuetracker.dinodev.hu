@@ -4,18 +4,43 @@
     top: 0,
     left: 0,
     right: 0,
-    zIndex: '900',
+    zIndex: '1000',
     borderTop: 0,
     borderRight: 0,
-    height: '4em',
-    backgroundColor: 'white',
     boxShadow: '0 0 8px 1px #ddd'
   }"
 >
   <div class="p-toolbar-group-left">
-    <i class="pi pi-bars" style="cursor: pointer" (click)="toggleSidebar()"></i>
+    <button
+      pButton
+      title="Menu"
+      icon="pi pi-bars"
+      class="p-button-text"
+      (click)="toggleSidebar()"
+    ></button>
   </div>
   <div class="p-toolbar-group-right">
-    <img src="/assets/icons/icon-72x72.png" alt="Logo" style="height: 2em" />
+    <div *ngIf="auth.user$ | async as user; else login">
+      <img [src]="user.photoURL" [alt]="user.displayName" class="profile" />
+      <button
+        pButton
+        title="Log out"
+        icon="pi pi-sign-out"
+        class="p-button-text"
+        (click)="auth.signOut()"
+      ></button>
+    </div>
+
+    <ng-template #login>
+      <div>
+        <button
+          pButton
+          title="Log in"
+          icon="pi pi-sign-in"
+          class="p-button-text"
+          (click)="auth.googleSignIn()"
+        ></button>
+      </div>
+    </ng-template>
   </div>
 </p-toolbar>
