@@ -5,8 +5,14 @@
   [showCloseIcon]="false"
   styleClass="p-sidebar-sm"
   [style]="{
+    marginTop: '4em',
     backgroundColor: '#fff'
   }"
   [modal]="false"
   [autoZIndex]="false"
-></p-sidebar>
+>
+  <p-menu
+    [model]="menuItems"
+    [style]="{ margin: 0, width: '100%', border: '0' }"
+  ></p-menu>
+</p-sidebar>
