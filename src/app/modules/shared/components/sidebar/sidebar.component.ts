@@ -26,14 +26,18 @@ export class SidebarComponent implements OnInit {
       {
         label: 'Dashboard',
         icon: 'pi pi-fw pi-table',
-        routerLink: '/dashboard',
+        routerLink: '/issueTracker/dashboard',
       },
       {
         label: 'Projects',
         icon: 'pi pi-fw pi-folder',
-        routerLink: '/projects',
+        routerLink: '/issueTracker/projects',
       },
-      { label: 'Issues', icon: 'pi pi-fw pi-file', routerLink: '/issues' },
+      {
+        label: 'Issues',
+        icon: 'pi pi-fw pi-file',
+        routerLink: '/issueTracker/issues',
+      },
       { label: 'Settings', icon: 'pi pi-fw pi-cog', routerLink: '/settings' },
     ];
 
