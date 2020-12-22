@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from '../../components/dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { IssuesComponent } from './components/issues/issues.component';
+import { BoardsComponent } from './components/boards/boards.component';
+import { LabelsComponent } from './components/labels/labels.component';
 
 const routes: Routes = [
   {
@@ -10,11 +14,19 @@ const routes: Routes = [
   },
   {
     path: 'projects',
-    component: DashboardComponent,
+    component: ProjectsComponent,
+  },
+  {
+    path: 'boards',
+    component: BoardsComponent,
   },
   {
     path: 'issues',
-    component: DashboardComponent,
+    component: IssuesComponent,
+  },
+  {
+    path: 'labels',
+    component: LabelsComponent,
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

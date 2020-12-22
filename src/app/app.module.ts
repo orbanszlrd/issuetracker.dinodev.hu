@@ -16,10 +16,10 @@ import { AppComponent } from './app.component';
 import { appReducer } from './store/reducers/app.reducer';
 import { IndexEffects } from './store/effects/index.effects';
 import { HomeComponent } from './components/home/home.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, DashboardComponent],
+  declarations: [AppComponent, HomeComponent, SettingsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

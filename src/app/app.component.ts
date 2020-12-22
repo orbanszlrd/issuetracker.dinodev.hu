@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
 
 import * as AppActions from './store/actions/app.actions';
+
+import * as appSelectors from './store/selectors/app.selectors';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +15,13 @@ import * as AppActions from './store/actions/app.actions';
 export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
-  constructor(private store: Store) {}
+  showSidebar$: Observable<boolean>;
+
+  constructor(private store: Store) {
+    this.showSidebar$ = this.store.select(appSelectors.showSidebar);
+  }
 
   hideSidebar(): void {
-    console.log('hide');
     this.store.dispatch(AppActions.hideSidebar());
   }
 

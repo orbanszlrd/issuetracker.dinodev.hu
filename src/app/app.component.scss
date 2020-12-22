@@ -3,4 +3,9 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  transition: all 0.3s;
+}
+
+.open-sidebar {
+  margin-left: 12em;
 }
