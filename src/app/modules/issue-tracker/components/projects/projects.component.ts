@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/modules/firebase/services/auth.service';
+
+import { Project } from '../../models/project.model';
+import * as ProjectSelectors from '../../store/selectors/project.selectors';
+import * as ProjectPageActions from '../../store/actions/project.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -9,19 +13,21 @@ import { AuthService } from 'src/app/modules/firebase/services/auth.service';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
-  constructor(public auth: AuthService, private store: Store) {}
+  projects$: Observable<any>;
+
+  constructor(public auth: AuthService, private store: Store) {
+    this.projects$ = this.store.select(ProjectSelectors.getAllProjects);
+  }
 
   ngOnInit(): void {}
 
   isOpen: boolean = false;
 
-  project: {
-    title: string;
-    description: string;
-    columns: [];
-  } = { title: '', description: '', columns: [] };
+  project: Project = { title: '', description: '', boards: [] };
 
   openPanel(): void {
+    this.project.title = 'Project ' + Math.round(Math.random() * 999);
+
     this.isOpen = true;
   }
 
@@ -30,8 +36,10 @@ export class ProjectsComponent implements OnInit {
   }
 
   insert(): void {
-    console.log('Add new Project');
-    console.log(this.project);
     this.isOpen = false;
+
+    this.store.dispatch(
+      ProjectPageActions.insertData({ project: { ...this.project } })
+    );
   }
 }

@@ -1,7 +1,22 @@
 <div>
   <h2>Projects</h2>
-
   <p-button label="New Project" (click)="openPanel()"></p-button>
+  <ng-container *ngIf="projects$ | async as projects">
+    <p-table [value]="projects.data">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-project>
+        <tr>
+          <td>{{ project.title }}</td>
+          <td>{{ project.description }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-container>
 </div>
 
 <p-dialog
@@ -27,7 +42,7 @@
       <textarea
         pInputTextarea
         [(ngModel)]="project.description"
-        [style]="{ height: '320px' }"
+        [style]="{ height: '16rem' }"
       ></textarea>
     </div>
     <div class="p-field p-col-12">
