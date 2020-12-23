@@ -2,7 +2,7 @@
   <h2>Projects</h2>
   <p-button label="New Project" (click)="openPanel()"></p-button>
   <ng-container *ngIf="projects$ | async as projects">
-    <p-table [value]="projects.data">
+    <p-table [value]="projects">
       <ng-template pTemplate="header">
         <tr>
           <th>Title</th>
