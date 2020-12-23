@@ -6,9 +6,11 @@ import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
@@ -29,10 +31,12 @@ const Prime = [
   CarouselModule,
   CheckboxModule,
   ColorPickerModule,
+  DialogModule,
   DropdownModule,
   EditorModule,
   InputSwitchModule,
   InputTextModule,
+  InputTextareaModule,
   MenubarModule,
   MenuModule,
   PanelModule,

@@ -1,9 +1,8 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  padding-top: 4rem;
+  padding-left: 1rem;
   transition: all 0.3s;
+  height: 100%;
 }
 
 .open-sidebar {

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   hideSidebar(): void {
-    this.store.dispatch(AppActions.hideSidebar());
+    //    this.store.dispatch(AppActions.hideSidebar());
   }
 
   ngOnInit(): void {

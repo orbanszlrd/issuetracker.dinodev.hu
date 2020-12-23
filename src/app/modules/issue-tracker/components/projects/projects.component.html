@@ -1,1 +1,42 @@
-<h1>Projects</h1>
+<div>
+  <h2>Projects</h2>
+
+  <p-button label="New Project" (click)="openPanel()"></p-button>
+</div>
+
+<p-dialog
+  header="New Project"
+  [modal]="true"
+  [(visible)]="isOpen"
+  styleClass="it-dialog"
+  (onHide)="closePanel()"
+>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        type="text"
+        pInputText
+        [(ngModel)]="project.title"
+        class="p-inputtext p-component"
+      />
+    </div>
+    <div class="p-field p-col-12">
+      <label for="text">Description</label>
+      <textarea
+        pInputTextarea
+        [(ngModel)]="project.description"
+        [style]="{ height: '320px' }"
+      ></textarea>
+    </div>
+    <div class="p-field p-col-12">
+      <p-button
+        label="Save"
+        icon="pi pi-check"
+        iconPos="right"
+        (click)="insert()"
+      ></p-button>
+    </div>
+  </div>
+</p-dialog>

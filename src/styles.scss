@@ -18,3 +18,13 @@ ul {
   padding-inline-start: 0;
   list-style: none;
 }
+
+.it-dialog {
+  width: 60vw;
+}
+
+@media screen and (max-width: 40em) {
+  .it-dialog {
+    width: 80vw;
+  }
+}
