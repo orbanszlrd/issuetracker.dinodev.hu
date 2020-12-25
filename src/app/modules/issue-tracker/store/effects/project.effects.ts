@@ -7,16 +7,49 @@ import * as ProjectPageActions from '../actions/project.actions';
 
 @Injectable()
 export class ProjectEffects {
-  insertProject$ = createEffect(() =>
+  selectData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectPageActions.selectData),
+      mergeMap(() => {
+        return this.projectService.select().pipe(
+          map((data) => {
+            return {
+              type: ProjectPageActions.selectSuccess.type,
+              data: data,
+            };
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+
+  insertData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProjectPageActions.insertData),
       mergeMap((props) => {
-        return this.projectService.insert(props.project).pipe(
+        return this.projectService.create(props.project).pipe(
           map((project) => {
             console.log(project);
             return {
               type: ProjectPageActions.insertSuccess.type,
-              project: project,
+            };
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+
+  deleteData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectPageActions.deleteData),
+      mergeMap((props) => {
+        return this.projectService.delete(props.id).pipe(
+          map((project) => {
+            console.log(project);
+            return {
+              type: ProjectPageActions.insertSuccess.type,
             };
           }),
           catchError(() => EMPTY)

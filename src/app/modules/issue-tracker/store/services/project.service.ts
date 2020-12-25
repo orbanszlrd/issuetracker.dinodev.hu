@@ -21,7 +21,11 @@ export class ProjectService {
     this.projectsCollection = this.afs.collection('projects');
   }
 
-  insert(project: Project): Observable<any> {
+  select(): Observable<any> {
+    return this.projectsCollection.valueChanges();
+  }
+
+  create(project: Project): Observable<Project> {
     let id = uuidv4();
 
     project = {
@@ -32,7 +36,7 @@ export class ProjectService {
 
     //    this.projectsCollection.add(project);
 
-    let result = this.projectsCollection
+    this.projectsCollection
       .doc(id)
       .set(project)
       .then(() => {
@@ -42,14 +46,16 @@ export class ProjectService {
         console.log('Error');
       });
 
+    return of(project);
+  }
+
+  update(project: Project): Observable<any> {
     return EMPTY;
   }
 
-  update(): Observable<any> {
-    return EMPTY;
-  }
+  delete(id: string): Observable<any> {
+    this.projectsCollection.doc(id).delete();
 
-  delete(): Observable<any> {
     return EMPTY;
   }
 }

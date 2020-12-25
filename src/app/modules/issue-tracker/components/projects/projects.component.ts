@@ -13,13 +13,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
-  projects$: Observable<any>;
+  projects$: Observable<Project[]>;
 
   constructor(public auth: AuthService, private store: Store) {
     this.projects$ = this.store.select(ProjectSelectors.getAllProjects);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(ProjectPageActions.selectData());
+  }
 
   isOpen: boolean = false;
 
@@ -35,11 +37,15 @@ export class ProjectsComponent implements OnInit {
     this.isOpen = false;
   }
 
-  insert(): void {
+  create(): void {
     this.isOpen = false;
 
     this.store.dispatch(
       ProjectPageActions.insertData({ project: { ...this.project } })
     );
+  }
+
+  delete(id: string): void {
+    this.store.dispatch(ProjectPageActions.deleteData({ id }));
   }
 }

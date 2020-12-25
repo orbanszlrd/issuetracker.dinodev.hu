@@ -7,12 +7,31 @@
         <tr>
           <th>Title</th>
           <th>Description</th>
+          <th>Create Date</th>
+          <th>Delete</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-project>
         <tr>
           <td>{{ project.title }}</td>
           <td>{{ project.description }}</td>
+          <td>
+            {{
+              project.createDate
+                ? (project.createDate.seconds * 1000
+                  | date: "yyyy-MM-dd HH:mm:ss")
+                : ""
+            }}
+          </td>
+          <td>
+            <button
+              pButton
+              title="Menu"
+              icon="pi pi-trash"
+              class="p-button-text"
+              (click)="delete(project.id)"
+            ></button>
+          </td>
         </tr>
       </ng-template>
     </p-table>
@@ -50,7 +69,7 @@
         label="Save"
         icon="pi pi-check"
         iconPos="right"
-        (click)="insert()"
+        (click)="create()"
       ></p-button>
     </div>
   </div>
