@@ -18,13 +18,12 @@ const projectReducer = createReducer(
   on(ProjectPageActions.getDataFromFirestore, (state) => ({
     ...state,
   })),
-  on(ProjectPageActions.fillData, (state, action) => ({
-    ...state,
-    data: action.projects,
-  })),
   on(ProjectPageActions.insertData, (state, action) => ({
     ...state,
     data: [...state.data, action.project],
+  })),
+  on(ProjectPageActions.insertSuccess, (state, action) => ({
+    ...state,
   }))
 );
 

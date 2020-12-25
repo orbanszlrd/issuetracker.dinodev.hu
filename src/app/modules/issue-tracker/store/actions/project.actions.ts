@@ -6,12 +6,9 @@ export const getDataFromFirestore = createAction(
   '[Projects Page] Get data from Firestore'
 );
 
-export const fillData = createAction(
-  '[Projects Page] Fill data',
-  props<{ projects: Project[] }>()
-);
-
 export const insertData = createAction(
   '[Projects Page] Insert data',
   props<{ project: Project }>()
 );
+
+export const insertSuccess = createAction('[Projects Page] Successful insert');
