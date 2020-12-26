@@ -31,6 +31,7 @@ export class ProjectService {
     project = {
       id: id,
       ...project,
+      userId: firebase.auth().currentUser?.uid,
       createDate: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
@@ -40,22 +41,32 @@ export class ProjectService {
       .doc(id)
       .set(project)
       .then(() => {
-        console.log('Success');
+        console.log('Create Success');
       })
       .catch(() => {
-        console.log('Error');
+        console.log('Create Error');
       });
 
     return of(project);
   }
 
-  update(project: Project): Observable<any> {
-    return EMPTY;
+  update(project: Project): Observable<Project> {
+    //    return EMPTY;
+
+    return of(project);
   }
 
-  delete(id: string): Observable<any> {
-    this.projectsCollection.doc(id).delete();
+  delete(id: string): Observable<string> {
+    this.projectsCollection
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log('Delete Success');
+      })
+      .catch(() => {
+        console.log('Delete Error');
+      });
 
-    return EMPTY;
+    return of(id);
   }
 }

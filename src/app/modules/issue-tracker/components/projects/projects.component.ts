@@ -15,6 +15,10 @@ import { Observable } from 'rxjs';
 export class ProjectsComponent implements OnInit {
   projects$: Observable<Project[]>;
 
+  isOpen: boolean = false;
+
+  project: Project = { slug: '', title: '', description: '', boards: [] };
+
   constructor(public auth: AuthService, private store: Store) {
     this.projects$ = this.store.select(ProjectSelectors.getAllProjects);
   }
@@ -23,12 +27,11 @@ export class ProjectsComponent implements OnInit {
     this.store.dispatch(ProjectPageActions.selectData());
   }
 
-  isOpen: boolean = false;
-
-  project: Project = { title: '', description: '', boards: [] };
-
   openPanel(): void {
-    this.project.title = 'Project ' + Math.round(Math.random() * 999);
+    let nr = Math.round(Math.random() * 999);
+
+    this.project.slug = 'project-' + nr;
+    this.project.title = 'Project ' + nr;
 
     this.isOpen = true;
   }

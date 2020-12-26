@@ -1,6 +1,14 @@
-<div>
+<div class="container">
   <h2>Projects</h2>
-  <p-button label="New Project" (click)="openPanel()"></p-button>
+
+  <p-button
+    label="New Project"
+    title="New Project"
+    icon="pi pi-plus"
+    iconPos="right"
+    (click)="openPanel()"
+  ></p-button>
+
   <ng-container *ngIf="projects$ | async as projects">
     <p-table [value]="projects">
       <ng-template pTemplate="header">
@@ -57,11 +65,21 @@
       />
     </div>
     <div class="p-field p-col-12">
+      <label for="title">Slug</label>
+      <input
+        id="slug"
+        type="text"
+        pInputText
+        [(ngModel)]="project.slug"
+        class="p-inputtext p-component"
+      />
+    </div>
+    <div class="p-field p-col-12">
       <label for="text">Description</label>
       <textarea
         pInputTextarea
         [(ngModel)]="project.description"
-        [style]="{ height: '16rem' }"
+        [style]="{ height: '12rem' }"
       ></textarea>
     </div>
     <div class="p-field p-col-12">

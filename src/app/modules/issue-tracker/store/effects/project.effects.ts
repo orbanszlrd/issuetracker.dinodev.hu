@@ -46,10 +46,10 @@ export class ProjectEffects {
       ofType(ProjectPageActions.deleteData),
       mergeMap((props) => {
         return this.projectService.delete(props.id).pipe(
-          map((project) => {
-            console.log(project);
+          map((props) => {
+            console.log(props);
             return {
-              type: ProjectPageActions.insertSuccess.type,
+              type: ProjectPageActions.deleteSuccess.type,
             };
           }),
           catchError(() => EMPTY)
