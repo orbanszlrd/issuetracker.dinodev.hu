@@ -22,16 +22,23 @@ export class ProjectService {
   }
 
   select(): Observable<any> {
+    let userId = firebase.auth().currentUser?.uid;
+
+    this.projectsCollection = this.afs.collection('projects', (ref) =>
+      ref.where('userId', '==', userId).limit(10)
+    );
+
     return this.projectsCollection.valueChanges();
   }
 
   create(project: Project): Observable<Project> {
     let id = uuidv4();
+    let userId = firebase.auth().currentUser?.uid;
 
     project = {
       id: id,
       ...project,
-      userId: firebase.auth().currentUser?.uid,
+      userId: userId,
       createDate: firebase.firestore.FieldValue.serverTimestamp(),
     };
 

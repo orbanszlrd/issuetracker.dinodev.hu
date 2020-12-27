@@ -44,7 +44,8 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    //    StoreModule.forRoot(reducers, { metaReducers }), // local  storage
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot(IndexEffects),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
