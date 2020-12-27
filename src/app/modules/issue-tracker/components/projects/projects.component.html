@@ -1,29 +1,32 @@
 <div class="container">
-  <h2>Projects</h2>
-
   <p-button
     label="New Project"
     title="New Project"
-    icon="pi pi-plus"
-    iconPos="right"
+    class="new-button"
     (click)="openPanel()"
   ></p-button>
 
+  <h2>Projects</h2>
+
   <ng-container *ngIf="projects$ | async as projects">
-    <p-table [value]="projects">
+    <p-table [value]="projects" class="o-table">
       <ng-template pTemplate="header">
         <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Create Date</th>
-          <th>Delete</th>
+          <th class="o-title">Title</th>
+          <th class="o-description">Description</th>
+          <th class="o-date">Create Date</th>
+          <th class="o-icon">Delete</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-project>
         <tr>
-          <td>{{ project.title }}</td>
-          <td>{{ project.description }}</td>
-          <td>
+          <td class="o-title">
+            <a [routerLink]="['/issueTracker/projects', project.slug]">{{
+              project.title
+            }}</a>
+          </td>
+          <td class="o-description">{{ project.description }}</td>
+          <td class="o-date">
             {{
               project.createDate
                 ? (project.createDate.seconds * 1000

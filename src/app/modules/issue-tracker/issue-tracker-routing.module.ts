@@ -17,6 +17,10 @@ const routes: Routes = [
     component: ProjectsComponent,
   },
   {
+    path: 'projects/:id',
+    component: ProjectsComponent,
+  },
+  {
     path: 'boards',
     component: BoardsComponent,
   },

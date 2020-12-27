@@ -7,6 +7,5 @@ export interface Project {
   description: string;
   boards: Board[];
   userId?: string;
-  timestamp?: Object;
-  createDate?: any;
+  createDate?: Object;
 }

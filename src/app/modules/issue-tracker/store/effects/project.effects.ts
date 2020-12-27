@@ -30,7 +30,7 @@ export class ProjectEffects {
       mergeMap((props) => {
         return this.projectService.create(props.project).pipe(
           map((project) => {
-            console.log(project);
+            //            console.log(project);
             return {
               type: ProjectPageActions.insertSuccess.type,
             };
@@ -47,7 +47,7 @@ export class ProjectEffects {
       mergeMap((props) => {
         return this.projectService.delete(props.id).pipe(
           map((props) => {
-            console.log(props);
+            //            console.log(props);
             return {
               type: ProjectPageActions.deleteSuccess.type,
             };

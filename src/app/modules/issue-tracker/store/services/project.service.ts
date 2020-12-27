@@ -25,7 +25,11 @@ export class ProjectService {
     let userId = firebase.auth().currentUser?.uid;
 
     this.projectsCollection = this.afs.collection('projects', (ref) =>
-      ref.where('userId', '==', userId).limit(10)
+      ref
+        .where('userId', '==', userId)
+        //        .orderBy('title', 'asc')
+        .orderBy('createDate', 'desc')
+        .limit(10)
     );
 
     return this.projectsCollection.valueChanges();
