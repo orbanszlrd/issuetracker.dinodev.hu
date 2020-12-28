@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthService } from 'src/app/modules/firebase/services/auth.service';
 
 import { Project } from '../../models/project.model';
 import * as ProjectSelectors from '../../store/selectors/project.selectors';
@@ -17,9 +16,9 @@ export class ProjectsComponent implements OnInit {
 
   isOpen: boolean = false;
 
-  project: Project = { slug: '', title: '', description: '', boards: [] };
+  project: Project = { slug: '', title: '', description: '' };
 
-  constructor(public auth: AuthService, private store: Store) {
+  constructor(private store: Store) {
     this.projects$ = this.store.select(ProjectSelectors.getAllProjects);
   }
 

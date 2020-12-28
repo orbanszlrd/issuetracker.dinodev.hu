@@ -1,4 +1,4 @@
-<div class="container">
+<div class="o-issue-tracker-container">
   <p-button
     label="New Project"
     title="New Project"
@@ -21,9 +21,10 @@
       <ng-template pTemplate="body" let-project>
         <tr>
           <td class="o-title">
-            <a [routerLink]="['/issueTracker/projects', project.slug]">{{
-              project.title
-            }}</a>
+            <a
+              [routerLink]="['/issueTracker/projects', project.slug, 'boards']"
+              >{{ project.title }}</a
+            >
           </td>
           <td class="o-description">{{ project.description }}</td>
           <td class="o-date">
@@ -53,7 +54,7 @@
   header="New Project"
   [modal]="true"
   [(visible)]="isOpen"
-  styleClass="it-dialog"
+  styleClass="o-issue-tracker-dialog"
   (onHide)="closePanel()"
 >
   <div class="p-fluid p-formgrid p-grid">

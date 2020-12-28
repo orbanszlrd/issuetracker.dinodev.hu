@@ -5,7 +5,6 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
-  boards: Board[];
   userId?: string;
   createDate?: Object;
 }
