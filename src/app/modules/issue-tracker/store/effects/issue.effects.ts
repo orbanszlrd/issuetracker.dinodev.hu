@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, take } from 'rxjs/operators';
-import { ProjectService } from '../services/project.service';
-import * as ProjectPageActions from '../actions/project.actions';
+import { IssueService } from '../services/issue.service';
+import * as IssuePageActions from '../actions/issue.actions';
 
 @Injectable()
-export class ProjectEffects {
+export class IssueEffects {
   selectData$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProjectPageActions.selectData),
+      ofType(IssuePageActions.selectData),
       mergeMap(() => {
-        return this.projectService.select().pipe(
+        return this.issueService.select().pipe(
           map((data) => {
             return {
-              type: ProjectPageActions.selectSuccess.type,
+              type: IssuePageActions.selectSuccess.type,
               data: data,
             };
           }),
@@ -26,16 +26,20 @@ export class ProjectEffects {
 
   insertData$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProjectPageActions.insertData),
+      ofType(IssuePageActions.insertData),
       mergeMap((props) => {
-        return this.projectService.create(props.project).pipe(
-          map((project) => {
-            //            console.log(project);
+        return this.issueService.create(props.issue).pipe(
+          map((issue) => {
+            console.log(issue);
             return {
-              type: ProjectPageActions.insertSuccess.type,
+              type: IssuePageActions.insertSuccess.type,
             };
           }),
-          catchError(() => EMPTY)
+          catchError((err) => {
+            console.log(err);
+
+            return EMPTY;
+          })
         );
       })
     )
@@ -43,13 +47,13 @@ export class ProjectEffects {
 
   deleteData$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProjectPageActions.deleteData),
+      ofType(IssuePageActions.deleteData),
       mergeMap((props) => {
-        return this.projectService.delete(props.project).pipe(
+        return this.issueService.delete(props.issue).pipe(
           map((props) => {
             //            console.log(props);
             return {
-              type: ProjectPageActions.deleteSuccess.type,
+              type: IssuePageActions.deleteSuccess.type,
             };
           }),
           catchError(() => EMPTY)
@@ -58,8 +62,5 @@ export class ProjectEffects {
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private projectService: ProjectService
-  ) {}
+  constructor(private actions$: Actions, private issueService: IssueService) {}
 }

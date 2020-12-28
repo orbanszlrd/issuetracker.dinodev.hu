@@ -46,10 +46,10 @@ export class BoardService {
       .doc(id)
       .set(board)
       .then(() => {
-        console.log('Create Success');
+        console.log('Create Board Success');
       })
       .catch(() => {
-        console.log('Create Error');
+        console.log('Create Board Error');
       });
 
     return of(board);
@@ -65,10 +65,10 @@ export class BoardService {
       .doc(board.id)
       .delete()
       .then(() => {
-        console.log('Delete Success');
+        console.log('Delete Board Success');
       })
       .catch(() => {
-        console.log('Delete Error');
+        console.log('Delete Board Error');
       });
 
     return of(board);

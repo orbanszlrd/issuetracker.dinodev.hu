@@ -1,5 +1,97 @@
-<div>
+<div class="o-issue-tracker-container">
+  <p-button
+    label="New Issue"
+    title="New Issue"
+    class="new-button"
+    (click)="openPanel()"
+  ></p-button>
+
   <h2>Issues</h2>
 
-  <p-button label="New Issue"></p-button>
+  <ng-container *ngIf="issues$ | async as issues">
+    <p-table [value]="issues" class="o-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="o-title">Title</th>
+          <th class="o-description">Description</th>
+          <th class="o-date">Create Date</th>
+          <th class="o-icon">Delete</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-issue>
+        <tr>
+          <td class="o-title">
+            <a [routerLink]="['/issueTracker/issues', issue.slug]">{{
+              issue.title
+            }}</a>
+          </td>
+          <td class="o-description">{{ issue.description }}</td>
+          <td class="o-date">
+            {{
+              issue.createDate
+                ? (issue.createDate.seconds * 1000
+                  | date: "yyyy-MM-dd HH:mm:ss")
+                : ""
+            }}
+          </td>
+          <td>
+            <button
+              pButton
+              title="Menu"
+              icon="pi pi-trash"
+              class="p-button-text"
+              (click)="delete(issue)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-container>
 </div>
+
+<p-dialog
+  header="New Issue"
+  [modal]="true"
+  [(visible)]="isOpen"
+  styleClass="o-issue-tracker-dialog"
+  (onHide)="closePanel()"
+>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        type="text"
+        pInputText
+        [(ngModel)]="issue.title"
+        class="p-inputtext p-component"
+      />
+    </div>
+    <div class="p-field p-col-12">
+      <label for="title">Slug</label>
+      <input
+        id="slug"
+        type="text"
+        pInputText
+        [(ngModel)]="issue.slug"
+        class="p-inputtext p-component"
+      />
+    </div>
+    <div class="p-field p-col-12">
+      <label for="text">Description</label>
+      <textarea
+        pInputTextarea
+        [(ngModel)]="issue.description"
+        [style]="{ height: '12rem' }"
+      ></textarea>
+    </div>
+    <div class="p-field p-col-12">
+      <p-button
+        label="Save"
+        icon="pi pi-check"
+        iconPos="right"
+        (click)="create()"
+      ></p-button>
+    </div>
+  </div>
+</p-dialog>

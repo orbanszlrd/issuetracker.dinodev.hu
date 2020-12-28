@@ -18,7 +18,7 @@ export const insertSuccess = createAction('[Projects Page] Successful insert');
 
 export const deleteData = createAction(
   '[Projects Page] Delete data',
-  props<{ id: string }>()
+  props<{ project: Project }>()
 );
 
 export const deleteSuccess = createAction('[Projects Page] Successful delete');

@@ -24,12 +24,14 @@ export class ProjectService {
   select(): Observable<any> {
     let userId = firebase.auth().currentUser?.uid;
 
-    this.projectsCollection = this.afs.collection('projects', (ref) =>
-      ref
-        .where('userId', '==', userId)
-        //        .orderBy('title', 'asc')
-        .orderBy('createDate', 'desc')
-        .limit(10)
+    this.projectsCollection = this.afs.collection(
+      'projects',
+      (ref) =>
+        ref
+          .where('userId', '==', userId)
+          //        .orderBy('title', 'asc')
+          .orderBy('createDate', 'desc')
+      //        .limit(10)
     );
 
     return this.projectsCollection.valueChanges();
@@ -52,18 +54,16 @@ export class ProjectService {
       .doc(id)
       .set(project)
       .then(() => {
-        console.log('Create Success');
+        console.log('Create Project Success');
       })
       .catch(() => {
-        console.log('Create Error');
+        console.log('Create Project Error');
       });
 
     return of(project);
   }
 
   update(project: Project): Observable<Project> {
-    //    return EMPTY;
-
     //    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
 
     //    return userRef.set(project, { merge: true });
@@ -71,17 +71,17 @@ export class ProjectService {
     return of(project);
   }
 
-  delete(id: string): Observable<string> {
+  delete(project: Project): Observable<Project> {
     this.projectsCollection
-      .doc(id)
+      .doc(project.id)
       .delete()
       .then(() => {
-        console.log('Delete Success');
+        console.log('Delete Project Success');
       })
       .catch(() => {
-        console.log('Delete Error');
+        console.log('Delete Project Error');
       });
 
-    return of(id);
+    return of(project);
   }
 }

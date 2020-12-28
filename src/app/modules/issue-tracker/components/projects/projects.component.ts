@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Project } from '../../models/project.model';
 import * as ProjectSelectors from '../../store/selectors/project.selectors';
 import * as ProjectPageActions from '../../store/actions/project.actions';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -47,7 +47,7 @@ export class ProjectsComponent implements OnInit {
     );
   }
 
-  delete(id: string): void {
-    this.store.dispatch(ProjectPageActions.deleteData({ id }));
+  delete(project: Project): void {
+    this.store.dispatch(ProjectPageActions.deleteData({ project }));
   }
 }

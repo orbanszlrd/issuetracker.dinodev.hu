@@ -21,11 +21,11 @@ const routes: Routes = [
     component: BoardsComponent,
   },
   {
-    path: 'boards',
-    component: BoardsComponent,
+    path: 'issues',
+    component: IssuesComponent,
   },
   {
-    path: 'issues',
+    path: 'issues/:issueSlug',
     component: IssuesComponent,
   },
   {
