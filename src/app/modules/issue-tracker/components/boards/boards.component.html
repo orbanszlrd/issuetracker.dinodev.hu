@@ -3,7 +3,7 @@
     label="New Board"
     title="New Board"
     class="new-button"
-    (click)="openPanel()"
+    (click)="newPanel()"
   ></p-button>
 
   <h2>Boards</h2>
@@ -21,7 +21,16 @@
       <ng-template pTemplate="body" let-board>
         <tr>
           <td class="o-title">
-            {{ board.title }}
+            <a
+              [routerLink]="[
+                '/issueTracker/projects/',
+                project?.slug,
+                'boards',
+                board.slug
+              ]"
+              (click)="editPanel(board)"
+              >{{ board.title }}</a
+            >
           </td>
           <td class="o-description">{{ board.description }}</td>
           <td class="o-date">
@@ -48,9 +57,9 @@
 </div>
 
 <p-dialog
-  header="New Project"
+  [header]="dialog.title"
   [modal]="true"
-  [(visible)]="isOpen"
+  [(visible)]="dialog.isOpen"
   styleClass="o-issue-tracker-dialog"
   (onHide)="closePanel()"
 >
@@ -88,7 +97,7 @@
         label="Save"
         icon="pi pi-check"
         iconPos="right"
-        (click)="create()"
+        (click)="save()"
       ></p-button>
     </div>
   </div>

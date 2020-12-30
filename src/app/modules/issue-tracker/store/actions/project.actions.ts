@@ -16,6 +16,13 @@ export const insertData = createAction(
 
 export const insertSuccess = createAction('[Projects Page] Successful insert');
 
+export const updateData = createAction(
+  '[Projects Page] Update data',
+  props<{ project: Project }>()
+);
+
+export const updateSuccess = createAction('[Projects Page] Successful update');
+
 export const deleteData = createAction(
   '[Projects Page] Delete data',
   props<{ project: Project }>()

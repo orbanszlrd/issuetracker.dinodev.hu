@@ -19,6 +19,13 @@ export const insertData = createAction(
 
 export const insertSuccess = createAction('[Boards Page] Successful insert');
 
+export const updateData = createAction(
+  '[Boards Page] Update data',
+  props<{ board: Board }>()
+);
+
+export const updateSuccess = createAction('[Boards Page] Successful update');
+
 export const deleteData = createAction(
   '[Boards Page] Delete data',
   props<{ board: Board }>()

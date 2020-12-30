@@ -24,14 +24,18 @@ const projectReducer = createReducer(
   })),
   on(ProjectPageActions.insertData, (state, action) => ({
     ...state,
-    //    data: [...state.data, action.project],
   })),
   on(ProjectPageActions.insertSuccess, (state, action) => ({
     ...state,
   })),
+  on(ProjectPageActions.updateData, (state, action) => ({
+    ...state,
+  })),
+  on(ProjectPageActions.updateSuccess, (state, action) => ({
+    ...state,
+  })),
   on(ProjectPageActions.deleteData, (state, action) => ({
     ...state,
-    //    data: [...state.data.filter((project) => project.id != action.id)],
   })),
   on(ProjectPageActions.deleteSuccess, (state, action) => ({
     ...state,

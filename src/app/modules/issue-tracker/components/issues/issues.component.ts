@@ -17,7 +17,7 @@ export class IssuesComponent implements OnInit {
   dialog: {
     title: string;
     isOpen: boolean;
-  } = { title: 'New issue', isOpen: false };
+  } = { title: 'New Issue', isOpen: false };
 
   issue: Issue = { title: '', slug: '', description: '' };
 
@@ -29,7 +29,7 @@ export class IssuesComponent implements OnInit {
     this.store.dispatch(IssuePageActions.selectData());
   }
 
-  openPanel(): void {
+  newPanel(): void {
     let nr = Math.round(Math.random() * 999);
 
     this.issue = {
@@ -46,7 +46,7 @@ export class IssuesComponent implements OnInit {
     this.dialog.isOpen = false;
   }
 
-  edit(issue: Issue): void {
+  editPanel(issue: Issue): void {
     this.issue = { ...issue };
 
     this.dialog.title = 'Edit Issue';

@@ -14,7 +14,10 @@ import * as ProjectPageActions from '../../store/actions/project.actions';
 export class ProjectsComponent implements OnInit {
   projects$: Observable<Project[]>;
 
-  isOpen: boolean = false;
+  dialog: {
+    title: string;
+    isOpen: boolean;
+  } = { title: 'New Project', isOpen: false };
 
   project: Project = { slug: '', title: '', description: '' };
 
@@ -26,25 +29,42 @@ export class ProjectsComponent implements OnInit {
     this.store.dispatch(ProjectPageActions.selectData());
   }
 
-  openPanel(): void {
+  newPanel(): void {
     let nr = Math.round(Math.random() * 999);
 
-    this.project.slug = 'project-' + nr;
-    this.project.title = 'Project ' + nr;
+    this.project = {
+      slug: 'project-' + nr,
+      title: 'Project ' + nr,
+      description: '',
+    };
 
-    this.isOpen = true;
+    this.dialog.title = 'New Project';
+    this.dialog.isOpen = true;
   }
 
   closePanel(): void {
-    this.isOpen = false;
+    this.dialog.isOpen = false;
   }
 
-  create(): void {
-    this.isOpen = false;
+  editPanel(project: Project): void {
+    this.project = { ...project };
 
-    this.store.dispatch(
-      ProjectPageActions.insertData({ project: { ...this.project } })
-    );
+    this.dialog.title = 'Edit Project';
+    this.dialog.isOpen = true;
+  }
+
+  save(): void {
+    this.dialog.isOpen = false;
+
+    if (this.dialog.title == 'New Project') {
+      this.store.dispatch(
+        ProjectPageActions.insertData({ project: { ...this.project } })
+      );
+    } else {
+      this.store.dispatch(
+        ProjectPageActions.updateData({ project: { ...this.project } })
+      );
+    }
   }
 
   delete(project: Project): void {

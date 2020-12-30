@@ -43,6 +43,23 @@ export class BoardEffects {
     )
   );
 
+  updateData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardPageActions.updateData),
+      mergeMap((props) => {
+        return this.boardService.update(props.board).pipe(
+          map((board) => {
+            //           console.log(board);
+            return {
+              type: BoardPageActions.updateSuccess.type,
+            };
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+
   deleteData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.deleteData),

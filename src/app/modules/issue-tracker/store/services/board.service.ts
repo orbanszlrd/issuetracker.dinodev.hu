@@ -55,6 +55,25 @@ export class BoardService {
     return of(board);
   }
 
+  update(board: Board): Observable<Board> {
+    this.boardsCollection = this.afs
+      .collection('projects')
+      .doc(board.projectId)
+      .collection('boards');
+
+    this.boardsCollection
+      .doc(board.id)
+      .set(board)
+      .then(() => {
+        console.log('Create Board Success');
+      })
+      .catch(() => {
+        console.log('Create Board Error');
+      });
+
+    return of(board);
+  }
+
   delete(board: Board): Observable<any> {
     this.boardsCollection = this.afs
       .collection('projects')

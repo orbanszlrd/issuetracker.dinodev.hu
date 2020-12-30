@@ -3,7 +3,7 @@
     label="New Issue"
     title="New Issue"
     class="new-button"
-    (click)="openPanel()"
+    (click)="newPanel()"
   ></p-button>
 
   <h2>Issues</h2>
@@ -23,7 +23,7 @@
           <td class="o-title">
             <a
               [routerLink]="['/issueTracker/issues', issue.slug]"
-              (click)="edit(issue)"
+              (click)="editPanel(issue)"
               >{{ issue.title }}</a
             >
           </td>

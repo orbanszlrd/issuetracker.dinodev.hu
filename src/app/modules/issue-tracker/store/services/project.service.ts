@@ -64,9 +64,15 @@ export class ProjectService {
   }
 
   update(project: Project): Observable<Project> {
-    //    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
-
-    //    return userRef.set(project, { merge: true });
+    this.projectsCollection
+      .doc(project.id)
+      .set(project)
+      .then(() => {
+        console.log('Update Project Success');
+      })
+      .catch(() => {
+        console.log('Update Project Error');
+      });
 
     return of(project);
   }

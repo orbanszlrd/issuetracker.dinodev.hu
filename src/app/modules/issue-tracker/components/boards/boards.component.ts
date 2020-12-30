@@ -21,7 +21,10 @@ export class BoardsComponent implements OnInit {
   project: Project | undefined;
   boards$: Observable<Board[]> = of([]);
 
-  isOpen: boolean = false;
+  dialog: {
+    title: string;
+    isOpen: boolean;
+  } = { title: 'New Board', isOpen: false };
 
   board: Board = {
     slug: '',
@@ -56,12 +59,16 @@ export class BoardsComponent implements OnInit {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  openPanel(): void {
+  newPanel(): void {
     let nr = Math.round(Math.random() * 999);
 
-    this.board.slug = 'board-' + nr;
-    this.board.title = 'Board ' + nr;
-    this.board.projectId = this.project?.id;
+    this.board = {
+      slug: 'board-' + nr,
+      title: 'Board ' + nr,
+      description: '',
+      projectId: this.project?.id,
+      columns: [],
+    };
 
     if (true) {
       this.board.columns = [
@@ -71,21 +78,33 @@ export class BoardsComponent implements OnInit {
       ];
     }
 
-    this.isOpen = true;
+    this.dialog.title = 'New Board';
+    this.dialog.isOpen = true;
   }
 
   closePanel(): void {
-    this.isOpen = false;
+    this.dialog.isOpen = false;
   }
 
-  create(): void {
-    this.isOpen = false;
+  editPanel(board: Board): void {
+    this.board = { ...board };
 
-    this.store.dispatch(
-      BoardPageActions.insertData({
-        board: { ...this.board },
-      })
-    );
+    this.dialog.title = 'Edit Board';
+    this.dialog.isOpen = true;
+  }
+
+  save(): void {
+    this.dialog.isOpen = false;
+
+    if (this.dialog.title == 'New Board') {
+      this.store.dispatch(
+        BoardPageActions.insertData({ board: { ...this.board } })
+      );
+    } else {
+      this.store.dispatch(
+        BoardPageActions.updateData({ board: { ...this.board } })
+      );
+    }
   }
 
   delete(board: Board): void {

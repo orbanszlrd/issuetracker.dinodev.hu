@@ -41,6 +41,23 @@ export class ProjectEffects {
     )
   );
 
+  updateData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectPageActions.updateData),
+      mergeMap((props) => {
+        return this.projectService.update(props.project).pipe(
+          map((project) => {
+            //            console.log(project);
+            return {
+              type: ProjectPageActions.updateSuccess.type,
+            };
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+
   deleteData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProjectPageActions.deleteData),

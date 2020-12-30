@@ -28,6 +28,12 @@ const boardReducer = createReducer(
   on(BoardPageActions.insertSuccess, (state, action) => ({
     ...state,
   })),
+  on(BoardPageActions.updateData, (state, action) => ({
+    ...state,
+  })),
+  on(BoardPageActions.updateSuccess, (state, action) => ({
+    ...state,
+  })),
   on(BoardPageActions.deleteData, (state, action) => ({
     ...state,
   })),
