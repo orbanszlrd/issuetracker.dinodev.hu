@@ -23,7 +23,12 @@ export class BoardsComponent implements OnInit {
 
   isOpen: boolean = false;
 
-  board: Board = { slug: '', title: '', description: '' };
+  board: Board = {
+    slug: '',
+    title: '',
+    description: '',
+    columns: [],
+  };
 
   constructor(private route: ActivatedRoute, private store: Store) {}
 
@@ -57,6 +62,14 @@ export class BoardsComponent implements OnInit {
     this.board.slug = 'board-' + nr;
     this.board.title = 'Board ' + nr;
     this.board.projectId = this.project?.id;
+
+    if (true) {
+      this.board.columns = [
+        { name: 'To do' },
+        { name: 'In Progress' },
+        { name: 'Done' },
+      ];
+    }
 
     this.isOpen = true;
   }

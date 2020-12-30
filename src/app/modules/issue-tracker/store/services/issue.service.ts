@@ -63,6 +63,18 @@ export class IssueService {
   }
 
   update(issue: Issue): Observable<Issue> {
+    let id = issue.id;
+
+    this.issuesCollection
+      .doc(id)
+      .set(issue)
+      .then(() => {
+        console.log('Update Issue Success');
+      })
+      .catch(() => {
+        console.log('Update Issue Error');
+      });
+
     return of(issue);
   }
 

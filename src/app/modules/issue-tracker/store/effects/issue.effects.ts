@@ -45,6 +45,27 @@ export class IssueEffects {
     )
   );
 
+  updateData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(IssuePageActions.updateData),
+      mergeMap((props) => {
+        return this.issueService.update(props.issue).pipe(
+          map((issue) => {
+            console.log(issue);
+            return {
+              type: IssuePageActions.updateSuccess.type,
+            };
+          }),
+          catchError((err) => {
+            console.log(err);
+
+            return EMPTY;
+          })
+        );
+      })
+    )
+  );
+
   deleteData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(IssuePageActions.deleteData),

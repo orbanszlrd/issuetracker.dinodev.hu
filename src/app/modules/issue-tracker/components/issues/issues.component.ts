@@ -14,7 +14,10 @@ import * as IssuePageActions from '../../store/actions/issue.actions';
 export class IssuesComponent implements OnInit {
   issues$: Observable<Issue[]>;
 
-  isOpen: boolean = false;
+  dialog: {
+    title: string;
+    isOpen: boolean;
+  } = { title: 'New issue', isOpen: false };
 
   issue: Issue = { title: '', slug: '', description: '' };
 
@@ -29,22 +32,39 @@ export class IssuesComponent implements OnInit {
   openPanel(): void {
     let nr = Math.round(Math.random() * 999);
 
-    this.issue.slug = 'issue-' + nr;
-    this.issue.title = 'Issue ' + nr;
+    this.issue = {
+      slug: 'issue-' + nr,
+      title: 'Issue ' + nr,
+      description: '',
+    };
 
-    this.isOpen = true;
+    this.dialog.title = 'New Issue';
+    this.dialog.isOpen = true;
   }
 
   closePanel(): void {
-    this.isOpen = false;
+    this.dialog.isOpen = false;
   }
 
-  create(): void {
-    this.isOpen = false;
+  edit(issue: Issue): void {
+    this.issue = { ...issue };
 
-    this.store.dispatch(
-      IssuePageActions.insertData({ issue: { ...this.issue } })
-    );
+    this.dialog.title = 'Edit Issue';
+    this.dialog.isOpen = true;
+  }
+
+  save(): void {
+    this.dialog.isOpen = false;
+
+    if (this.dialog.title == 'New Issue') {
+      this.store.dispatch(
+        IssuePageActions.insertData({ issue: { ...this.issue } })
+      );
+    } else {
+      this.store.dispatch(
+        IssuePageActions.updateData({ issue: { ...this.issue } })
+      );
+    }
   }
 
   delete(issue: Issue): void {

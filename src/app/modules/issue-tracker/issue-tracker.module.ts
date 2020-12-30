@@ -14,6 +14,9 @@ import { LabelsComponent } from './components/labels/labels.component';
 
 import * as fromIssueTracker from './store/reducers/index.reducer';
 import { IndexEffects } from './store/effects/index.effects';
+import { BoardComponent } from './components/board/board.component';
+import { ColumnComponent } from './components/column/column.component';
+import { IssueComponent } from './components/issue/issue.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { IndexEffects } from './store/effects/index.effects';
     IssuesComponent,
     BoardsComponent,
     LabelsComponent,
+    BoardComponent,
+    ColumnComponent,
+    IssueComponent,
   ],
   imports: [
     CommonModule,

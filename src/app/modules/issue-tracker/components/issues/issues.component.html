@@ -21,9 +21,11 @@
       <ng-template pTemplate="body" let-issue>
         <tr>
           <td class="o-title">
-            <a [routerLink]="['/issueTracker/issues', issue.slug]">{{
-              issue.title
-            }}</a>
+            <a
+              [routerLink]="['/issueTracker/issues', issue.slug]"
+              (click)="edit(issue)"
+              >{{ issue.title }}</a
+            >
           </td>
           <td class="o-description">{{ issue.description }}</td>
           <td class="o-date">
@@ -50,9 +52,9 @@
 </div>
 
 <p-dialog
-  header="New Issue"
+  [header]="dialog.title"
   [modal]="true"
-  [(visible)]="isOpen"
+  [(visible)]="dialog.isOpen"
   styleClass="o-issue-tracker-dialog"
   (onHide)="closePanel()"
 >
@@ -90,7 +92,7 @@
         label="Save"
         icon="pi pi-check"
         iconPos="right"
-        (click)="create()"
+        (click)="save()"
       ></p-button>
     </div>
   </div>

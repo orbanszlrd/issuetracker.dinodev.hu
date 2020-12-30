@@ -28,6 +28,12 @@ const issueReducer = createReducer(
   on(IssuePageActions.insertSuccess, (state, action) => ({
     ...state,
   })),
+  on(IssuePageActions.updateData, (state, action) => ({
+    ...state,
+  })),
+  on(IssuePageActions.updateSuccess, (state, action) => ({
+    ...state,
+  })),
   on(IssuePageActions.deleteData, (state, action) => ({
     ...state,
   })),

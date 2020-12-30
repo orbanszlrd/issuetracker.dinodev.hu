@@ -5,6 +5,7 @@ export interface Board {
   title: string;
   slug: string;
   description: string;
+  columns: Column[];
   projectId?: string;
   createDate?: Object;
 }
