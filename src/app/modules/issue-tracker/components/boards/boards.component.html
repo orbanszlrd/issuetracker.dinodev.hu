@@ -15,22 +15,14 @@
           <th class="o-title">Title</th>
           <th class="o-description">Description</th>
           <th class="o-date">Create Date</th>
+          <th class="o-icon">Edit</th>
           <th class="o-icon">Delete</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-board>
         <tr>
           <td class="o-title">
-            <a
-              [routerLink]="[
-                '/issueTracker/projects/',
-                project?.slug,
-                'boards',
-                board.slug
-              ]"
-              (click)="editPanel(board)"
-              >{{ board.title }}</a
-            >
+            {{ board.title }}
           </td>
           <td class="o-description">{{ board.description }}</td>
           <td class="o-date">
@@ -41,12 +33,21 @@
                 : ""
             }}
           </td>
-          <td>
+          <td class="o-icon">
+            <button
+              pButton
+              title="Edit"
+              icon="pi pi-pencil"
+              class="p-button-text"
+              (click)="editPanel(board)"
+            ></button>
+          </td>
+          <td class="o-icon">
             <button
               pButton
               title="Menu"
               icon="pi pi-trash"
-              class="p-button-text"
+              class="p-button-text p-button-danger"
               (click)="delete(board)"
             ></button>
           </td>

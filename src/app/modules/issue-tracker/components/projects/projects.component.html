@@ -13,9 +13,9 @@
       <ng-template pTemplate="header">
         <tr>
           <th class="o-title">Title</th>
-          <th class="o-title">Boards</th>
           <th class="o-description">Description</th>
           <th class="o-date">Create Date</th>
+          <th class="o-icon">Edit</th>
           <th class="o-icon">Delete</th>
         </tr>
       </ng-template>
@@ -23,14 +23,8 @@
         <tr>
           <td class="o-title">
             <a
-              [routerLink]="['/issueTracker/projects', project.slug]"
-              (click)="editPanel(project)"
+              [routerLink]="['/issueTracker/projects', project.slug, 'boards']"
               >{{ project.title }}</a
-            >
-          </td>
-          <td class="o-title">
-            <a [routerLink]="['/issueTracker/projects', project.slug, 'boards']"
-              >Boards</a
             >
           </td>
           <td class="o-description">{{ project.description }}</td>
@@ -42,12 +36,21 @@
                 : ""
             }}
           </td>
-          <td>
+          <td class="o-icon">
+            <button
+              pButton
+              title="Edit"
+              icon="pi pi-pencil"
+              class="p-button-text"
+              (click)="editPanel(project)"
+            ></button>
+          </td>
+          <td class="o-icon">
             <button
               pButton
               title="Menu"
               icon="pi pi-trash"
-              class="p-button-text"
+              class="p-button-text p-button-danger"
               (click)="delete(project)"
             ></button>
           </td>
@@ -58,7 +61,7 @@
 </div>
 
 <p-dialog
-  header="New Project"
+  [header]="dialog.title"
   [modal]="true"
   [(visible)]="dialog.isOpen"
   styleClass="o-issue-tracker-dialog"

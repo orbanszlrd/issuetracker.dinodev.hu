@@ -39,41 +39,41 @@ a:hover {
     margin-bottom: 2rem;
   }
 
-  th.o-date,
-  td.o-date {
+  .p-datatable th.o-date,
+  .p-datatable td.o-date {
     display: table-cell;
     width: 12rem;
   }
 
-  th.o-description,
-  td.o-description {
+  .p-datatable th.o-description,
+  .p-datatable td.o-description {
     display: table-cell;
   }
 
-  th.o-date,
-  td.o-date {
+  .p-datatable th.o-date,
+  .p-datatable td.o-date {
     display: table-cell;
     width: 12rem;
     text-align: center;
   }
 
-  th.o-icon,
-  td.o-icon {
+  .p-datatable th.o-icon,
+  .p-datatable td.o-icon {
     display: table-cell;
     width: 6rem;
     text-align: center;
   }
 
   @media only screen and (max-width: 900px) {
-    th.o-description,
-    td.o-description {
+    .p-datatable th.o-description,
+    .p-datatable td.o-description {
       display: none;
     }
   }
 
   @media only screen and (max-width: 700px) {
-    th.o-date,
-    td.o-date {
+    .p-datatable th.o-date,
+    .p-datatable td.o-date {
       display: none;
     }
   }
