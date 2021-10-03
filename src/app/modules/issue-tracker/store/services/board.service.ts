@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-} from '@angular/fire/firestore';
+} from '@angular/fire/compat/firestore';
 
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { v4 as uuidv4 } from 'uuid';
 
 import { EMPTY, Observable, of } from 'rxjs';
