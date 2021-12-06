@@ -1,10 +1,5 @@
 <div class="o-issue-tracker-container">
-  <p-button
-    label="New Project"
-    title="New Project"
-    class="new-button"
-    (click)="newPanel()"
-  ></p-button>
+  <p-button label="New Project" title="New Project" class="new-button" (click)="newPanel()"></p-button>
 
   <h2>Projects</h2>
 
@@ -22,37 +17,24 @@
       <ng-template pTemplate="body" let-project>
         <tr>
           <td class="o-title">
-            <a
-              [routerLink]="['/issueTracker/projects', project.slug, 'boards']"
-              >{{ project.title }}</a
-            >
+            <a [routerLink]="['/issueTracker/projects', project.slug, 'boards']">{{ project.title }}</a>
           </td>
           <td class="o-description">{{ project.description }}</td>
           <td class="o-date">
             {{
-              project.createDate
-                ? (project.createDate.seconds * 1000
-                  | date: "yyyy-MM-dd HH:mm:ss")
-                : ""
+            project.createDate
+            ? (project.createDate.seconds * 1000
+            | date: "yyyy-MM-dd HH:mm:ss")
+            : ""
             }}
           </td>
           <td class="o-icon">
-            <button
-              pButton
-              title="Edit"
-              icon="pi pi-pencil"
-              class="p-button-text"
-              (click)="editPanel(project)"
-            ></button>
+            <button pButton title="Edit" icon="pi pi-pencil" class="p-button-text"
+              (click)="editPanel(project)"></button>
           </td>
           <td class="o-icon">
-            <button
-              pButton
-              title="Menu"
-              icon="pi pi-trash"
-              class="p-button-text p-button-danger"
-              (click)="delete(project)"
-            ></button>
+            <button pButton title="Menu" icon="pi pi-trash" class="p-button-text p-button-danger"
+              (click)="delete(project)"></button>
           </td>
         </tr>
       </ng-template>
@@ -60,49 +42,29 @@
   </ng-container>
 </div>
 
-<p-dialog
-  [header]="dialog.title"
-  [modal]="true"
-  [(visible)]="dialog.isOpen"
-  styleClass="o-issue-tracker-dialog"
-  (onHide)="closePanel()"
->
+<p-dialog [header]="dialog.title" [modal]="true" [(visible)]="dialog.isOpen" styleClass="o-issue-tracker-dialog"
+  (onHide)="closePanel()">
   <div class="p-fluid p-formgrid p-grid">
-    <div class="p-field p-col-12">
-      <label for="title">Title</label>
-      <input
-        id="title"
-        type="text"
-        pInputText
-        [(ngModel)]="project.title"
-        class="p-inputtext p-component"
-      />
+    <div class="p-field p-col-12 m-2 pb-2">
+      <span class="p-float-label">
+        <input id="title" type="text" pInputText [(ngModel)]="project.title" class="p-inputtext p-component" />
+        <label for="title">Title</label>
+      </span>
+    </div>
+    <div class="p-field p-col-12 m-2 pb-2">
+      <span class="p-float-label">
+        <input id="slug" type="text" pInputText [(ngModel)]="project.slug" class="p-inputtext p-component" />
+        <label for="title">Slug</label>
+      </span>
+    </div>
+    <div class="p-field p-col-12 m-2 pb-2">
+      <span class="p-float-label">
+        <textarea pInputTextarea [(ngModel)]="project.description" [style]="{ height: '12rem' }"></textarea>
+        <label for="text">Description</label>
+      </span>
     </div>
     <div class="p-field p-col-12">
-      <label for="title">Slug</label>
-      <input
-        id="slug"
-        type="text"
-        pInputText
-        [(ngModel)]="project.slug"
-        class="p-inputtext p-component"
-      />
-    </div>
-    <div class="p-field p-col-12">
-      <label for="text">Description</label>
-      <textarea
-        pInputTextarea
-        [(ngModel)]="project.description"
-        [style]="{ height: '12rem' }"
-      ></textarea>
-    </div>
-    <div class="p-field p-col-12">
-      <p-button
-        label="Save"
-        icon="pi pi-check"
-        iconPos="right"
-        (click)="save()"
-      ></p-button>
+      <p-button label="Save" icon="pi pi-check" iconPos="right" (click)="save()"></p-button>
     </div>
   </div>
 </p-dialog>

@@ -1,10 +1,5 @@
 <div class="o-issue-tracker-container">
-  <p-button
-    label="New Issue"
-    title="New Issue"
-    class="new-button"
-    (click)="newPanel()"
-  ></p-button>
+  <p-button label="New Issue" title="New Issue" class="new-button" (click)="newPanel()"></p-button>
 
   <h2>Issues</h2>
 
@@ -27,29 +22,18 @@
           <td class="o-description">{{ issue.description }}</td>
           <td class="o-date">
             {{
-              issue.createDate
-                ? (issue.createDate.seconds * 1000
-                  | date: "yyyy-MM-dd HH:mm:ss")
-                : ""
+            issue.createDate
+            ? (issue.createDate.seconds * 1000
+            | date: "yyyy-MM-dd HH:mm:ss")
+            : ""
             }}
           </td>
           <td class="o-icon">
-            <button
-              pButton
-              title="Edit"
-              icon="pi pi-pencil"
-              class="p-button-text"
-              (click)="editPanel(issue)"
-            ></button>
+            <button pButton title="Edit" icon="pi pi-pencil" class="p-button-text" (click)="editPanel(issue)"></button>
           </td>
           <td class="o-icon">
-            <button
-              pButton
-              title="Delete"
-              icon="pi pi-trash"
-              class="p-button-text p-button-danger"
-              (click)="delete(issue)"
-            ></button>
+            <button pButton title="Delete" icon="pi pi-trash" class="p-button-text p-button-danger"
+              (click)="delete(issue)"></button>
           </td>
         </tr>
       </ng-template>
@@ -57,49 +41,29 @@
   </ng-container>
 </div>
 
-<p-dialog
-  [header]="dialog.title"
-  [modal]="true"
-  [(visible)]="dialog.isOpen"
-  styleClass="o-issue-tracker-dialog"
-  (onHide)="closePanel()"
->
+<p-dialog [header]="dialog.title" [modal]="true" [(visible)]="dialog.isOpen" styleClass="o-issue-tracker-dialog"
+  (onHide)="closePanel()">
   <div class="p-fluid p-formgrid p-grid">
-    <div class="p-field p-col-12">
-      <label for="title">Title</label>
-      <input
-        id="title"
-        type="text"
-        pInputText
-        [(ngModel)]="issue.title"
-        class="p-inputtext p-component"
-      />
+    <div class="p-field p-col-12 m-2 pb-2">
+      <span class="p-float-label">
+        <input id="title" type="text" pInputText [(ngModel)]="issue.title" class="p-inputtext p-component" />
+        <label for="title">Title</label>
+      </span>
+    </div>
+    <div class="p-field p-col-12 m-2 pb-2">
+      <span class="p-float-label">
+        <input id="slug" type="text" pInputText [(ngModel)]="issue.slug" class="p-inputtext p-component" />
+        <label for="title">Slug</label>
+      </span>
+    </div>
+    <div class="p-field p-col-12 m-2 pb-2">
+      <span class="p-float-label">
+        <textarea pInputTextarea [(ngModel)]="issue.description" [style]="{ height: '12rem' }"></textarea>
+        <label for="text">Description</label>
+      </span>
     </div>
     <div class="p-field p-col-12">
-      <label for="title">Slug</label>
-      <input
-        id="slug"
-        type="text"
-        pInputText
-        [(ngModel)]="issue.slug"
-        class="p-inputtext p-component"
-      />
-    </div>
-    <div class="p-field p-col-12">
-      <label for="text">Description</label>
-      <textarea
-        pInputTextarea
-        [(ngModel)]="issue.description"
-        [style]="{ height: '12rem' }"
-      ></textarea>
-    </div>
-    <div class="p-field p-col-12">
-      <p-button
-        label="Save"
-        icon="pi pi-check"
-        iconPos="right"
-        (click)="save()"
-      ></p-button>
+      <p-button label="Save" icon="pi pi-check" iconPos="right" (click)="save()"></p-button>
     </div>
   </div>
 </p-dialog>
