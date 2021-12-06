@@ -1,12 +1,38 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { AppComponent } from './app.component';
+import { MenubarComponent } from './modules/shared/components/menubar/menubar.component';
+import { ToolbarComponent } from './modules/shared/components/toolbar/toolbar.component';
+import { FooterComponent } from './modules/shared/components/footer/footer.component';
+import { LoaderComponent } from './modules/shared/components/loader/loader.component';
+import { SidebarComponent } from './modules/shared/components/sidebar/sidebar.component';
+import { PrimeModule } from './modules/prime/prime.module';
+import { FirebaseModule } from './modules/firebase/firebase.module';
 
 describe('AppComponent', () => {
+  const initialState = {};
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      imports: [
+        RouterTestingModule,
+        FontAwesomeModule,
+        PrimeModule,
+        FirebaseModule,
+      ],
+      providers: [AppComponent, provideMockStore({ initialState })],
+      declarations: [
+        AppComponent,
+        MenubarComponent,
+        SidebarComponent,
+        ToolbarComponent,
+        FooterComponent,
+        LoaderComponent,
+      ],
     }).compileComponents();
   });
 
@@ -14,20 +40,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'Skeleton for Angular Applications'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Skeleton for Angular Applications');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.container h1').textContent).toContain(
-      'Skeleton for Angular Applications'
-    );
   });
 });
