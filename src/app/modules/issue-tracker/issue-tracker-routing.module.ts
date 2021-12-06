@@ -6,6 +6,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { IssuesComponent } from './components/issues/issues.component';
 import { BoardsComponent } from './components/boards/boards.component';
 import { LabelsComponent } from './components/labels/labels.component';
+import { BoardComponent } from './components/board/board.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'projects/:projectSlug/boards/:boardSlug',
-    component: BoardsComponent,
+    component: BoardComponent,
   },
   {
     path: 'issues',

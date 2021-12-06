@@ -17,7 +17,8 @@
       <ng-template pTemplate="body" let-board>
         <tr>
           <td class="o-title">
-            {{ board.title }}
+            <a *ngIf="project" [routerLink]="['/issueTracker/projects', project.slug, 'boards', board.slug]">{{
+              board.title }}</a>
           </td>
           <td class="o-description">{{ board.description }}</td>
           <td class="o-date">

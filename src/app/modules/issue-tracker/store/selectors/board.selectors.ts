@@ -12,5 +12,5 @@ export const getBoards = createSelector(
 export const getBoard = createSelector(
   (state: any) => state['issuetracker'],
   (issuetracker: any, props: any) =>
-    issuetracker.boards.data.find((f: Board) => f.id === props.id)
+    issuetracker.boards.data.find((f: Board) => f.slug === props.slug)
 );
