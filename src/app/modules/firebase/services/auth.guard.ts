@@ -26,13 +26,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     return this.auth.user$.pipe(
       take(1),
-      map((user) => !!user),
-      tap((loggedIn) => {
-        if (!loggedIn) {
-          console.log('Access denied');
-          this.router.navigate(['/']);
-        }
-      })
+      map((user) => !!user)
     );
   }
 }
