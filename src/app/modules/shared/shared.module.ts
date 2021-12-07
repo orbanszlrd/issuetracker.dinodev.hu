@@ -12,7 +12,6 @@ import { FirebaseModule } from '../firebase/firebase.module';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 
 import { LoaderComponent } from './components/loader/loader.component';
-import { MenubarComponent } from './components/menubar/menubar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -21,7 +20,6 @@ import { FooterComponent } from './components/footer/footer.component';
   declarations: [
     LoaderComponent,
     SanitizeHtmlPipe,
-    MenubarComponent,
     SidebarComponent,
     ToolbarComponent,
     FooterComponent,
@@ -35,7 +33,6 @@ import { FooterComponent } from './components/footer/footer.component';
     PrimeModule,
     SanitizeHtmlPipe,
     LoaderComponent,
-    MenubarComponent,
     ToolbarComponent,
     SidebarComponent,
     FooterComponent,
