@@ -10,18 +10,20 @@ import { FooterComponent } from './modules/shared/components/footer/footer.compo
 import { LoaderComponent } from './modules/shared/components/loader/loader.component';
 import { SidebarComponent } from './modules/shared/components/sidebar/sidebar.component';
 import { PrimeModule } from './modules/prime/prime.module';
+import { Store } from '@ngrx/store';
 import { FirebaseModule } from './modules/firebase/firebase.module';
 
 describe('AppComponent', () => {
+  let store: Store;
   const initialState = {};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        FirebaseModule,
         FontAwesomeModule,
         PrimeModule,
-        FirebaseModule,
       ],
       providers: [AppComponent, provideMockStore({ initialState })],
       declarations: [
@@ -32,11 +34,23 @@ describe('AppComponent', () => {
         LoaderComponent,
       ],
     }).compileComponents();
+
+    store = TestBed.inject(Store);
+
+    spyOn(store, 'dispatch');
   });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+  });
+
+  it('should call the dispatch method of the store', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.hideSidebar();
+
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 });
