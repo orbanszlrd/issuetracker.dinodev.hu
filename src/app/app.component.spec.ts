@@ -5,7 +5,6 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
-import { MenubarComponent } from './modules/shared/components/menubar/menubar.component';
 import { ToolbarComponent } from './modules/shared/components/toolbar/toolbar.component';
 import { FooterComponent } from './modules/shared/components/footer/footer.component';
 import { LoaderComponent } from './modules/shared/components/loader/loader.component';
@@ -27,7 +26,6 @@ describe('AppComponent', () => {
       providers: [AppComponent, provideMockStore({ initialState })],
       declarations: [
         AppComponent,
-        MenubarComponent,
         SidebarComponent,
         ToolbarComponent,
         FooterComponent,
