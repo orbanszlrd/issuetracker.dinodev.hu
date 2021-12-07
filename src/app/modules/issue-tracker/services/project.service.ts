@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { EMPTY, Observable, of } from 'rxjs';
 
-import { Project } from '../../models/project.model';
+import { Project } from '../models/project.model';
 
 @Injectable({
   providedIn: 'root',

@@ -7,9 +7,9 @@ import {
 import firebase from 'firebase/compat/app';
 import { v4 as uuidv4 } from 'uuid';
 
-import { EMPTY, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
-import { Board } from '../../models/board.model';
+import { Board } from '../models/board.model';
 
 @Injectable({
   providedIn: 'root',
