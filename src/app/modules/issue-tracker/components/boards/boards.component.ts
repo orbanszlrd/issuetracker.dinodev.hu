@@ -1,6 +1,6 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { EMPTY, Observable, of, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 import { Project } from '../../models/project.model';
@@ -15,7 +15,7 @@ import * as BoardPageActions from '../../store/actions/board.actions';
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.scss'],
 })
-export class BoardsComponent implements OnInit {
+export class BoardsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   project: Project | undefined;

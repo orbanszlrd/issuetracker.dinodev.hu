@@ -1,12 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@angular-eslint/schematics"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "skeleton-angular": {
+    "issuetracker": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/skeleton-angular",
+            "outputPath": "dist/issuetracker",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -39,13 +40,15 @@
               "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
               "node_modules/primeng/resources/themes/md-light-indigo/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css",  
+              "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
               "node_modules/primeflex/primeflex.scss",
-              "node_modules/quill/dist/quill.core.css", 
+              "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css"
             ],
-            "scripts": ["node_modules/quill/dist/quill.js"]
+            "scripts": [
+              "node_modules/quill/dist/quill.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -80,18 +83,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "skeleton-angular:build"
+            "browserTarget": "issuetracker:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "skeleton-angular:build:production"
+              "browserTarget": "issuetracker:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "skeleton-angular:build"
+            "browserTarget": "issuetracker:build"
           }
         },
         "test": {
@@ -112,32 +115,47 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "skeleton-angular:serve"
+            "devServerTarget": "issuetracker:serve",
+            "watch": true,
+            "headless": false
           },
           "configurations": {
             "production": {
-              "devServerTarget": "skeleton-angular:serve:production"
+              "devServerTarget": "issuetracker:serve:production"
             }
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "issuetracker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "issuetracker:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
           }
         }
       }
     }
   },
-  "defaultProject": "skeleton-angular"
+  "defaultProject": "issuetracker"
 }
