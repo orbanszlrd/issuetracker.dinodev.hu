@@ -10,7 +10,7 @@ import {
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
-import { map, Observable, of, take } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from './user.model';
 
 function fakeRouterState(url: string): RouterStateSnapshot {

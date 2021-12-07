@@ -2,7 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
 import { FirebaseModule } from 'src/app/modules/firebase/firebase.module';
+import { AuthService } from 'src/app/modules/firebase/services/auth.service';
 import { User } from 'src/app/modules/firebase/services/user.model';
 import { PrimeModule } from 'src/app/modules/prime/prime.module';
 
@@ -11,6 +13,8 @@ import { SidebarComponent } from './sidebar.component';
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
   let fixture: ComponentFixture<SidebarComponent>;
+
+  let auth: AuthService;
 
   const initialState = { app: { isLoading: true, showSidebar: false } };
 
@@ -25,6 +29,10 @@ describe('SidebarComponent', () => {
       declarations: [SidebarComponent],
       providers: [provideMockStore({ initialState })],
     }).compileComponents();
+
+    auth = TestBed.inject(AuthService);
+
+    auth.user$ = of({ uid: 'uid', email: 'user@email.com' } as User);
   });
 
   beforeEach(() => {
@@ -35,6 +43,10 @@ describe('SidebarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create the menu for the authorized users', () => {
+    expect(component.menuItems.length).toEqual(5);
   });
 
   it('should generate the menu for the unauthorized users', () => {
