@@ -21,19 +21,11 @@ describe('ProjectService', () => {
         return {
           set: (project: Project) =>
             new Promise((resolve, reject) => {
-              if (id) {
-                resolve();
-              } else {
-                reject();
-              }
+              resolve();
             }),
           delete: () =>
             new Promise((resolve, reject) => {
-              if (id) {
-                resolve();
-              } else {
-                reject();
-              }
+              resolve();
             }),
         };
       },
@@ -68,24 +60,7 @@ describe('ProjectService', () => {
     });
   });
 
-  it('should fail to update the project if it has no id', (done) => {
-    let project: Project = {
-      title: 'Project 1',
-      slug: 'project-1',
-      description: '',
-    };
-
-    let result = service.update(project);
-
-    expect(result).toBeInstanceOf(Observable);
-
-    result.subscribe((data) => {
-      expect(data.title).toEqual(project.title);
-      done();
-    });
-  });
-
-  it('should update the project if it an id', (done) => {
+  it('should update an existing project', (done) => {
     let project: Project = {
       id: '1',
       title: 'Project 1',
@@ -103,24 +78,7 @@ describe('ProjectService', () => {
     });
   });
 
-  it('should fail to delete an project without providing the id', (done) => {
-    let project: Project = {
-      title: 'Project 1',
-      slug: 'project-1',
-      description: '',
-    };
-
-    let result = service.delete(project);
-
-    expect(result).toBeInstanceOf(Observable);
-
-    result.subscribe((data) => {
-      expect(data.title).toEqual(project.title);
-      done();
-    });
-  });
-
-  it('should delete the project with an id provided', (done) => {
+  it('should delete an existing project', (done) => {
     let project: Project = {
       id: '1',
       title: 'Project 1',

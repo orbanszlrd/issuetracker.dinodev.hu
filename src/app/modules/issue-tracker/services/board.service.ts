@@ -42,15 +42,7 @@ export class BoardService {
       .doc(board.projectId)
       .collection('boards');
 
-    this.boardsCollection
-      .doc(id)
-      .set(board)
-      .then(() => {
-        console.log('Create Board Success');
-      })
-      .catch(() => {
-        console.log('Create Board Error');
-      });
+    this.boardsCollection.doc(id).set(board);
 
     return of(board);
   }
@@ -61,15 +53,7 @@ export class BoardService {
       .doc(board.projectId)
       .collection('boards');
 
-    this.boardsCollection
-      .doc(board.id)
-      .set(board)
-      .then(() => {
-        console.log('Create Board Success');
-      })
-      .catch(() => {
-        console.log('Create Board Error');
-      });
+    this.boardsCollection.doc(board.id).set(board);
 
     return of(board);
   }
@@ -80,15 +64,7 @@ export class BoardService {
       .doc(board.projectId)
       .collection('boards');
 
-    this.boardsCollection
-      .doc(board.id)
-      .delete()
-      .then(() => {
-        console.log('Delete Board Success');
-      })
-      .catch(() => {
-        console.log('Delete Board Error');
-      });
+    this.boardsCollection.doc(board.id).delete();
 
     return of(board);
   }

@@ -44,43 +44,19 @@ export class IssueService {
       createDate: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    this.issuesCollection
-      .doc(id)
-      .set(issue)
-      .then(() => {
-        console.log('Create Issue Success');
-      })
-      .catch(() => {
-        console.log('Create Issue Error');
-      });
+    this.issuesCollection.doc(id).set(issue);
 
     return of(issue);
   }
 
   update(issue: Issue): Observable<Issue> {
-    this.issuesCollection
-      .doc(issue.id)
-      .set(issue)
-      .then(() => {
-        console.log('Update Issue Success');
-      })
-      .catch(() => {
-        console.log('Update Issue Error');
-      });
+    this.issuesCollection.doc(issue.id).set(issue);
 
     return of(issue);
   }
 
   delete(issue: Issue): Observable<Issue> {
-    this.issuesCollection
-      .doc(issue.id)
-      .delete()
-      .then(() => {
-        console.log('Delete Issue Success');
-      })
-      .catch(() => {
-        console.log('Delete Issue Error');
-      });
+    this.issuesCollection.doc(issue.id).delete();
 
     return of(issue);
   }

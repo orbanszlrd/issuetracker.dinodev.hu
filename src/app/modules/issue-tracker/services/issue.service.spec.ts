@@ -22,19 +22,11 @@ describe('IssueService', () => {
         return {
           set: (issue: Issue) =>
             new Promise((resolve, reject) => {
-              if (id) {
-                resolve();
-              } else {
-                reject();
-              }
+              resolve();
             }),
           delete: () =>
             new Promise((resolve, reject) => {
-              if (id) {
-                resolve();
-              } else {
-                reject();
-              }
+              resolve();
             }),
         };
       },
@@ -69,24 +61,7 @@ describe('IssueService', () => {
     });
   });
 
-  it('should fail to update the issue if it has no id', (done) => {
-    let issue: Issue = {
-      title: 'Issue 1',
-      slug: 'issue-1',
-      description: '',
-    };
-
-    let result = service.update(issue);
-
-    expect(result).toBeInstanceOf(Observable);
-
-    result.subscribe((data) => {
-      expect(data.title).toEqual(issue.title);
-      done();
-    });
-  });
-
-  it('should update the issue if it an id', (done) => {
+  it('should update an existing issue', (done) => {
     let issue: Issue = {
       id: '1',
       title: 'Issue 1',
@@ -104,24 +79,7 @@ describe('IssueService', () => {
     });
   });
 
-  it('should fail to delete an issue without providing the id', (done) => {
-    let issue: Issue = {
-      title: 'Issue 1',
-      slug: 'issue-1',
-      description: '',
-    };
-
-    let result = service.delete(issue);
-
-    expect(result).toBeInstanceOf(Observable);
-
-    result.subscribe((data) => {
-      expect(data.title).toEqual(issue.title);
-      done();
-    });
-  });
-
-  it('should delete the issue with an id provided', (done) => {
+  it('should delete an existing issue', (done) => {
     let issue: Issue = {
       id: '1',
       title: 'Issue 1',

@@ -24,14 +24,8 @@ export class ProjectService {
   select(): Observable<any> {
     let userId = firebase.auth().currentUser?.uid;
 
-    this.projectsCollection = this.afs.collection(
-      'projects',
-      (ref) =>
-        ref
-          .where('userId', '==', userId)
-          //        .orderBy('title', 'asc')
-          .orderBy('createDate', 'desc')
-      //        .limit(10)
+    this.projectsCollection = this.afs.collection('projects', (ref) =>
+      ref.where('userId', '==', userId).orderBy('createDate', 'desc')
     );
 
     return this.projectsCollection.valueChanges();
@@ -48,45 +42,19 @@ export class ProjectService {
       createDate: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    //    this.projectsCollection.add(project);
-
-    this.projectsCollection
-      .doc(id)
-      .set(project)
-      .then(() => {
-        console.log('Create Project Success');
-      })
-      .catch(() => {
-        console.log('Create Project Error');
-      });
+    this.projectsCollection.doc(id).set(project);
 
     return of(project);
   }
 
   update(project: Project): Observable<Project> {
-    this.projectsCollection
-      .doc(project.id)
-      .set(project)
-      .then(() => {
-        console.log('Update Project Success');
-      })
-      .catch(() => {
-        console.log('Update Project Error');
-      });
+    this.projectsCollection.doc(project.id).set(project);
 
     return of(project);
   }
 
   delete(project: Project): Observable<Project> {
-    this.projectsCollection
-      .doc(project.id)
-      .delete()
-      .then(() => {
-        console.log('Delete Project Success');
-      })
-      .catch(() => {
-        console.log('Delete Project Error');
-      });
+    this.projectsCollection.doc(project.id).delete();
 
     return of(project);
   }
