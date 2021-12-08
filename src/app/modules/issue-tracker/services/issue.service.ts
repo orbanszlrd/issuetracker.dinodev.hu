@@ -22,17 +22,13 @@ export class IssueService {
     this.issuesCollection = this.afs.collection('issues');
   }
 
-  select(): Observable<any> {
-    let userId = firebase.auth().currentUser?.uid;
+  getUserId() {
+    return firebase.auth().currentUser?.uid;
+  }
 
-    this.issuesCollection = this.afs.collection(
-      'issues',
-      (ref) =>
-        ref
-          .where('userId', '==', userId)
-          //        .orderBy('title', 'asc')
-          .orderBy('createDate', 'desc')
-      //        .limit(10)
+  select(): Observable<any> {
+    this.issuesCollection = this.afs.collection('issues', (ref) =>
+      ref.where('userId', '==', this.getUserId()).orderBy('createDate', 'desc')
     );
 
     return this.issuesCollection.valueChanges();
@@ -40,12 +36,11 @@ export class IssueService {
 
   create(issue: Issue): Observable<Issue> {
     let id = uuidv4();
-    let userId = firebase.auth().currentUser?.uid;
 
     issue = {
       id: id,
       ...issue,
-      userId: userId,
+      userId: this.getUserId(),
       createDate: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
