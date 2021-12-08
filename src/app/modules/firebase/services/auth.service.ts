@@ -52,16 +52,18 @@ export class AuthService {
     return userRef.set(data, { merge: true });
   }
 
-  async googleSignIn() {
+  async googleSignIn(): Promise<void> {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
 
-    return this.updateUserData(credential.user);
+    if (credential && credential.user) {
+      this.updateUserData(credential.user);
+    }
   }
 
-  async signOut() {
+  async signOut(): Promise<void> {
     await this.afAuth.signOut();
 
-    return this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 }
