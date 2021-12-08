@@ -31,16 +31,22 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.store
-        .select(ProjectSelectors.getProject, { slug: projectSlug })
-        .subscribe((project) => (this.project = project))
+        .select(ProjectSelectors.getProjects)
+        .subscribe(
+          (projects) =>
+            (this.project = projects.find(
+              (project: Project) => project.slug === projectSlug
+            ))
+        )
     );
 
     this.subscriptions.push(
       this.store
-        .select(BoardSelectors.getBoard, {
-          slug: boardSlug,
-        })
-        .subscribe((board: Board) => (this.board = board))
+        .select(BoardSelectors.getBoards)
+        .subscribe(
+          (boards: Board[]) =>
+            (this.board = boards.find((board) => board.slug === boardSlug))
+        )
     );
 
     if (this.project && this.project.id) {

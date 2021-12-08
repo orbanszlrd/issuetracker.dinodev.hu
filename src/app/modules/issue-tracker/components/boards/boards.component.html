@@ -3,7 +3,7 @@
 
   <h2>Boards</h2>
 
-  <ng-container *ngIf="boards$ | async as boards">
+  <ng-container *ngIf="boards">
     <p-table [value]="boards" class="o-table">
       <ng-template pTemplate="header">
         <tr>

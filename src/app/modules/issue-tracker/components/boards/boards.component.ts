@@ -19,6 +19,8 @@ export class BoardsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   project: Project | undefined;
+  boards: Board[] | undefined;
+
   boards$: Observable<Board[]> = of([]);
 
   dialog: {
@@ -40,15 +42,27 @@ export class BoardsComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.store
-        .select(ProjectSelectors.getProject, { slug: projectSlug })
-        .subscribe((project) => (this.project = project))
+        .select(ProjectSelectors.getProjects)
+        .subscribe(
+          (projects) =>
+            (this.project = projects.find(
+              (project: Project) => project.slug === projectSlug
+            ))
+        )
+    );
+
+    this.subscriptions.push(
+      this.store
+        .select(BoardSelectors.getBoards)
+        .subscribe(
+          (boards: Board[]) =>
+            (this.boards = boards.filter(
+              (board) => board.projectId === this.project?.id
+            ))
+        )
     );
 
     if (this.project && this.project.id) {
-      this.boards$ = this.store.select(BoardSelectors.getBoards, {
-        projectId: this.project.id,
-      });
-
       this.store.dispatch(
         BoardPageActions.selectData({ projectId: this.project.id })
       );

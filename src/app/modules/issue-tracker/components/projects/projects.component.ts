@@ -22,7 +22,7 @@ export class ProjectsComponent implements OnInit {
   project: Project = { slug: '', title: '', description: '' };
 
   constructor(private store: Store) {
-    this.projects$ = this.store.select(ProjectSelectors.getAllProjects);
+    this.projects$ = this.store.select(ProjectSelectors.getProjects);
   }
 
   ngOnInit(): void {

@@ -22,7 +22,7 @@ export class IssuesComponent implements OnInit {
   issue: Issue = { title: '', slug: '', description: '' };
 
   constructor(private store: Store) {
-    this.issues$ = this.store.select(IssueSelectors.getAllIssues);
+    this.issues$ = this.store.select(IssueSelectors.getIssues);
   }
 
   ngOnInit(): void {
