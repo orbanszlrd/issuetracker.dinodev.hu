@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
-import { Project } from '../models/project.model';
 
+import firebase from 'firebase/compat/app';
+
+import { Project } from '../models/project.model';
 import { ProjectService } from './project.service';
 
 describe('ProjectService', () => {
@@ -29,6 +31,10 @@ describe('ProjectService', () => {
     } as AngularFirestoreCollection);
 
     service = new ProjectService(afsSpy);
+
+    spyOn(firebase, 'auth').and.returnValue(<firebase.auth.Auth>{
+      currentUser: <firebase.User>{ uid: '0000000000000000' },
+    });
   });
 
   it('should be created', () => {

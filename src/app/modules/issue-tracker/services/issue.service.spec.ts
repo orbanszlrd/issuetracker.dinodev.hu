@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
-import { FirebaseModule } from 'src/app/modules/firebase/firebase.module';
-import { Issue } from '../models/issue.model';
 
+import firebase from 'firebase/compat/app';
+
+import { Issue } from '../models/issue.model';
 import { IssueService } from './issue.service';
 
 describe('IssueService', () => {
@@ -12,9 +13,7 @@ describe('IssueService', () => {
   const afsSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [FirebaseModule],
-    });
+    TestBed.configureTestingModule({});
 
     afsSpy.collection.and.returnValue({
       valueChanges: () => of({}),
@@ -33,6 +32,10 @@ describe('IssueService', () => {
     } as AngularFirestoreCollection);
 
     service = new IssueService(afsSpy);
+
+    spyOn(firebase, 'auth').and.returnValue(<firebase.auth.Auth>{
+      currentUser: <firebase.User>{ uid: '0000000000000000' },
+    });
   });
 
   it('should be created', () => {
