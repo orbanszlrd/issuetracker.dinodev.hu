@@ -1,5 +1,7 @@
 # Issue and Bug Tracker
 
+[![codecov](https://codecov.io/gh/orbanszlrd/issuetracker.odev.hu/branch/development/graph/badge.svg?token=HA3RJ2Y7FB)](https://codecov.io/gh/orbanszlrd/issuetracker.odev.hu)
+
 ### Description
 
 Open Source Issue and Bug Tracker written in Angular and Firebase
