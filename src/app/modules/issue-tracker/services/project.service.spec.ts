@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
-import { FirebaseModule } from 'src/app/modules/firebase/firebase.module';
 import { Project } from '../models/project.model';
 
 import { ProjectService } from './project.service';
@@ -12,9 +11,7 @@ describe('ProjectService', () => {
   const afsSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [FirebaseModule],
-    });
+    TestBed.configureTestingModule({});
     afsSpy.collection.and.returnValue({
       valueChanges: () => of({}),
       doc: (id: string) => {

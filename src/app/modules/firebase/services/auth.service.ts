@@ -28,13 +28,17 @@ export class AuthService {
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
-        if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-        } else {
-          return of(null);
-        }
+        return this.getUserData(user);
       })
     );
+  }
+
+  getUserData(user: firebase.User | null): Observable<User | undefined | null> {
+    if (user) {
+      return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+    } else {
+      return of(null);
+    }
   }
 
   private updateUserData({ uid, email, displayName, photoURL }: any) {
@@ -54,10 +58,10 @@ export class AuthService {
 
   async googleSignIn(): Promise<void> {
     const provider = new firebase.auth.GoogleAuthProvider();
-    const credential = await this.afAuth.signInWithPopup(provider);
+    const userCredential = await this.afAuth.signInWithPopup(provider);
 
-    if (credential && credential.user) {
-      this.updateUserData(credential.user);
+    if (userCredential && userCredential.user) {
+      this.updateUserData(userCredential.user);
     }
   }
 
