@@ -1,4 +1,4 @@
-name: Install, build and test CI
+name: GitHub Actions CI
 
 on:
   push:
@@ -22,11 +22,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm run test:github
+      - run: npm run test:codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/reports/
           fail_ci_if_error: false
           verbose: true

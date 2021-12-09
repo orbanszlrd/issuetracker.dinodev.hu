@@ -12,6 +12,7 @@
     "test:github": "ng test --browsers ChromeHeadless --watch false",
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "test:coverage": "ng test --no-watch --code-coverage",
+    "test:codecov": "ng test --browsers ChromeHeadless --no-watch --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
