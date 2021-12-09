@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { FirebaseModule } from 'src/app/modules/firebase/firebase.module';
 import { PrimeModule } from 'src/app/modules/prime/prime.module';
 
 import { IssuesComponent } from './issues.component';
@@ -14,14 +13,21 @@ describe('IssuesComponent', () => {
   let store: Store;
   let spy: jasmine.Spy;
 
+  const issue = {
+    id: '1',
+    title: 'Issue 1',
+    slug: 'issue-1',
+    description: '',
+  };
+
   const initialState = {
     app: { isLoading: true, showSidebar: false },
-    issuetracker: { issues: [] },
+    issuetracker: { issues: { data: [issue] } },
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, FirebaseModule, PrimeModule],
+      imports: [FormsModule, PrimeModule],
       providers: [provideMockStore({ initialState })],
       declarations: [IssuesComponent],
     }).compileComponents();
@@ -46,6 +52,7 @@ describe('IssuesComponent', () => {
     component.newPanel();
     expect(component.dialog.isOpen).toBeTrue();
     expect(component.dialog.title).toEqual('New Issue');
+    expect(component.issue.id).toBeUndefined();
   });
 
   it('should close the new panel', () => {
@@ -54,21 +61,14 @@ describe('IssuesComponent', () => {
     expect(component.dialog.isOpen).toBeFalse();
   });
 
-  it('should open the new panel', () => {
-    let issue = {
-      id: '1',
-      title: 'Issue  1',
-      slug: 'issue-1',
-      description: '',
-    };
-
+  it('should open the edit panel', () => {
     expect(component.dialog.isOpen).toBeFalse();
 
     component.editPanel(issue);
 
     expect(component.dialog.isOpen).toBeTrue();
     expect(component.dialog.title).toEqual('Edit Issue');
-    expect(component.issue.title).toEqual(issue.title);
+    expect(component.issue).toEqual(issue);
   });
 
   it('should call the dispatch method of the store on save', () => {
@@ -86,13 +86,6 @@ describe('IssuesComponent', () => {
   });
 
   it('should call the dispatch method of the store on delete', () => {
-    let issue = {
-      id: '1',
-      title: 'Issue  1',
-      slug: 'issue-1',
-      description: '',
-    };
-
     spy.calls.reset();
     component.delete(issue);
     expect(store.dispatch).toHaveBeenCalledTimes(1);
