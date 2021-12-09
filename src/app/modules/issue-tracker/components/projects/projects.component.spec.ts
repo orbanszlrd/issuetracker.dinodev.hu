@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { FirebaseModule } from 'src/app/modules/firebase/firebase.module';
 import { PrimeModule } from 'src/app/modules/prime/prime.module';
 
 import { ProjectsComponent } from './projects.component';
@@ -21,7 +20,7 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, FirebaseModule, PrimeModule],
+      imports: [FormsModule, PrimeModule],
       providers: [provideMockStore({ initialState })],
       declarations: [ProjectsComponent],
     }).compileComponents();
