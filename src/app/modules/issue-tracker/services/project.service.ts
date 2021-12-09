@@ -21,11 +21,13 @@ export class ProjectService {
     this.projectsCollection = this.afs.collection('projects');
   }
 
-  select(): Observable<any> {
-    let userId = firebase.auth().currentUser?.uid;
+  getUserId() {
+    return firebase.auth().currentUser?.uid;
+  }
 
+  select(): Observable<any> {
     this.projectsCollection = this.afs.collection('projects', (ref) =>
-      ref.where('userId', '==', userId).orderBy('createDate', 'desc')
+      ref.where('userId', '==', this.getUserId()).orderBy('createDate', 'desc')
     );
 
     return this.projectsCollection.valueChanges();
