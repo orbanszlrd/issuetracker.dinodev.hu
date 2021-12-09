@@ -1,5 +1,6 @@
 # Issue and Bug Tracker
 
+[![GitHub Actions CI](https://github.com/orbanszlrd/issuetracker.odev.hu/actions/workflows/development.yml/badge.svg)](https://github.com/orbanszlrd/issuetracker.odev.hu/actions/workflows/development.yml)
 [![codecov](https://codecov.io/gh/orbanszlrd/issuetracker.odev.hu/branch/development/graph/badge.svg?token=HA3RJ2Y7FB)](https://codecov.io/gh/orbanszlrd/issuetracker.odev.hu)
 
 ### Description
