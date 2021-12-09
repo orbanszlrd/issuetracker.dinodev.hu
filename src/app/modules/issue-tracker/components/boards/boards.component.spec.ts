@@ -1,10 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { FirebaseModule } from 'src/app/modules/firebase/firebase.module';
+import { of } from 'rxjs';
 import { PrimeModule } from 'src/app/modules/prime/prime.module';
+import { Project } from '../../models/project.model';
 
 import { BoardsComponent } from './boards.component';
 
@@ -15,15 +17,48 @@ describe('BoardsComponent', () => {
   let spy: jasmine.Spy;
   let store: Store;
 
+  const project: Project = {
+    id: '0000000000000000',
+    slug: 'project-101',
+    title: 'Project 101',
+    description: '',
+  };
+
+  const board = {
+    id: '111',
+    title: 'Board 111',
+    slug: 'board-111',
+    description: '',
+    projectId: project.id,
+    columns: [{ name: 'To do' }, { name: 'In Progress' }, { name: 'Done' }],
+  };
+
   const initialState = {
     app: { isLoading: true, showSidebar: false },
-    issuetracker: { boards: [] },
+    issuetracker: { projects: { data: [project] }, boards: { data: [board] } },
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule, FirebaseModule, PrimeModule],
-      providers: [provideMockStore({ initialState })],
+      imports: [FormsModule, PrimeModule, RouterTestingModule],
+      providers: [
+        BoardsComponent,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: (param: string): string | void => {
+                  if (param === 'projectSlug') return project.slug;
+                  else return;
+                },
+              },
+            },
+          },
+        },
+        provideMockStore({ initialState }),
+      ],
+
       declarations: [BoardsComponent],
     }).compileComponents();
 
@@ -34,6 +69,7 @@ describe('BoardsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BoardsComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
@@ -54,15 +90,7 @@ describe('BoardsComponent', () => {
     expect(component.dialog.isOpen).toBeFalse();
   });
 
-  it('should open the new panel', () => {
-    let board = {
-      id: '1',
-      title: 'board 1',
-      slug: 'board-1',
-      description: '',
-      columns: [],
-    };
-
+  it('should open the edit panel', () => {
     expect(component.dialog.isOpen).toBeFalse();
 
     component.editPanel(board);
@@ -73,28 +101,20 @@ describe('BoardsComponent', () => {
   });
 
   it('should call the dispatch method of the store on save', () => {
-    component.dialog.title = 'New board';
+    component.dialog.title = 'New Board';
     spy.calls.reset();
     component.save();
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
   it('should call the dispatch method of the store on save ', () => {
-    component.dialog.title = 'Edit board';
+    component.dialog.title = 'Edit Board';
     spy.calls.reset();
     component.save();
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
   it('should call the dispatch method of the store on delete', () => {
-    let board = {
-      id: '1',
-      title: 'Board 1',
-      slug: 'board-1',
-      description: '',
-      columns: [],
-    };
-
     spy.calls.reset();
     component.delete(board);
     expect(store.dispatch).toHaveBeenCalledTimes(1);

@@ -84,13 +84,11 @@ export class BoardsComponent implements OnInit, OnDestroy {
       columns: [],
     };
 
-    if (true) {
-      this.board.columns = [
-        { name: 'To do' },
-        { name: 'In Progress' },
-        { name: 'Done' },
-      ];
-    }
+    this.board.columns = [
+      { name: 'To do' },
+      { name: 'In Progress' },
+      { name: 'Done' },
+    ];
 
     this.dialog.title = 'New Board';
     this.dialog.isOpen = true;
