@@ -23,6 +23,8 @@ Install [Node.js](https://nodejs.org/) which includes Node Package Manager.
 #### Clone and Install
 Run `npm install -g @angular/cli` to install the Angular CLI globally  
 Run `git clone git@github.com:orbanszlrd/issuetracker.odev.hu.git` to clone the repository from [GitHub](https://github.com/orbanszlrd/issuetracker.odev.hu).  
+Run `git clone git@gitlab.com:orbanszlrd/issuetracker.odev.hu.git` to clone the repository from [GitLab](https://gitlab.com/orbanszlrd/issuetracker.odev.hu).  
+Run `git clone git@bitbucket.org:orbanszlrd/issuetracker.odev.hu.git` to clone the repository from [Bitbucket](https://bitbucket.org/orbanszlrd/issuetracker.odev.hu).  
 Run `npm install` or `npm ci` to install the dependencies.
 
 #### Development server
