@@ -1,17 +1,13 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FirebaseModule } from '../firebase.module';
 
-import {
-  ActivatedRouteSnapshot,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { AuthGuard } from './auth.guard';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 import { Observable, of } from 'rxjs';
-import { User } from './user.model';
+import { User } from '../models/user.model';
 
 function fakeRouterState(url: string): RouterStateSnapshot {
   return {
@@ -20,7 +16,6 @@ function fakeRouterState(url: string): RouterStateSnapshot {
 }
 
 describe('AuthGuard', () => {
-  let router: Router;
   let auth: AuthService;
   let guard: AuthGuard;
 
@@ -30,9 +25,8 @@ describe('AuthGuard', () => {
     });
 
     auth = TestBed.inject(AuthService);
-    router = TestBed.inject(Router);
 
-    guard = new AuthGuard(auth, router);
+    guard = new AuthGuard(auth);
   });
 
   it('should be created', () => {

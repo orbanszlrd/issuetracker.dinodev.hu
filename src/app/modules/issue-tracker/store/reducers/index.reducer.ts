@@ -2,20 +2,21 @@ import { ActionReducerMap } from '@ngrx/store';
 
 import {
   reducer as projectReducer,
-  key as projectKey,
+  projectKey,
+  ProjectState,
 } from './project.reducer';
-import { reducer as boardReducer, key as boardKey } from './board.reducer';
-import { reducer as issueReducer, key as issueKey } from './issue.reducer';
+import { reducer as boardReducer, boardKey, BoardState } from './board.reducer';
+import { reducer as issueReducer, issueKey, IssueState } from './issue.reducer';
 
 export const indexFeatureKey = 'issuetracker';
 
-export interface AppState {
-  [projectKey]: any;
-  [boardKey]: any;
-  [issueKey]: any;
+export interface IssueTrackerState {
+  [projectKey]: ProjectState;
+  [boardKey]: BoardState;
+  [issueKey]: IssueState;
 }
 
-export const reducers: ActionReducerMap<AppState> = {
+export const reducers: ActionReducerMap<IssueTrackerState> = {
   [projectKey]: projectReducer,
   [boardKey]: boardReducer,
   [issueKey]: issueReducer,

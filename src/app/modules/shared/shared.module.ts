@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PrimeModule } from '../prime/prime.module';
 import { FirebaseModule } from '../firebase/firebase.module';
-
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
-
 import { LoaderComponent } from './components/loader/loader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';

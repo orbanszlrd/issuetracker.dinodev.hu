@@ -12,21 +12,19 @@ describe('IssueService', () => {
 
   const afsSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
 
+  const dummyPromise: Promise<void> = new Promise((resolve, _reject) => {
+    resolve();
+  });
+
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
     afsSpy.collection.and.returnValue({
       valueChanges: () => of({}),
-      doc: (id: string) => {
+      doc: (_id: string) => {
         return {
-          set: (issue: Issue) =>
-            new Promise((resolve, reject) => {
-              resolve();
-            }),
-          delete: () =>
-            new Promise((resolve, reject) => {
-              resolve();
-            }),
+          set: (_issue: Issue) => dummyPromise,
+          delete: () => dummyPromise,
         };
       },
     } as AngularFirestoreCollection);

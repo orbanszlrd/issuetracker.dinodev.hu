@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
+import { Project } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service';
 import * as ProjectPageActions from '../actions/project.actions';
 
@@ -12,10 +13,10 @@ export class ProjectEffects {
       ofType(ProjectPageActions.selectData),
       mergeMap(() => {
         return this.projectService.select().pipe(
-          map((data) => {
+          map((projects: Project[]) => {
             return {
               type: ProjectPageActions.selectSuccess.type,
-              data: data,
+              data: projects,
             };
           }),
           catchError(() => EMPTY)
@@ -29,8 +30,7 @@ export class ProjectEffects {
       ofType(ProjectPageActions.insertData),
       mergeMap((props) => {
         return this.projectService.create(props.project).pipe(
-          map((project) => {
-            //            console.log(project);
+          map((_project: Project) => {
             return {
               type: ProjectPageActions.insertSuccess.type,
             };
@@ -46,8 +46,7 @@ export class ProjectEffects {
       ofType(ProjectPageActions.updateData),
       mergeMap((props) => {
         return this.projectService.update(props.project).pipe(
-          map((project) => {
-            //            console.log(project);
+          map((_project: Project) => {
             return {
               type: ProjectPageActions.updateSuccess.type,
             };
@@ -63,8 +62,7 @@ export class ProjectEffects {
       ofType(ProjectPageActions.deleteData),
       mergeMap((props) => {
         return this.projectService.delete(props.project).pipe(
-          map((props) => {
-            //            console.log(props);
+          map((_project: Project) => {
             return {
               type: ProjectPageActions.deleteSuccess.type,
             };

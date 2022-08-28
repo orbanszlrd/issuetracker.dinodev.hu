@@ -1,5 +1,3 @@
-import { Board } from './board.model';
-
 export interface Project {
   id?: string;
   slug: string;

@@ -13,7 +13,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { User } from './user.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,12 +41,12 @@ export class AuthService {
     }
   }
 
-  private updateUserData({ uid, email, displayName, photoURL }: any) {
+  private updateUserData({ uid, email, displayName, photoURL }: firebase.User) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${uid}`
     );
 
-    const data = {
+    const data: User = {
       uid,
       email,
       displayName,

@@ -3,45 +3,69 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as ProjectPageActions from '../actions/project.actions';
 import { Project } from '../../models/project.model';
 
-export const key = 'projects';
+export const projectKey = 'projects';
 
-export interface State {
+export interface ProjectState {
   data: Project[];
 }
 
-export const initialState: State = {
+const initialState: ProjectState = {
   data: [],
 };
 
 const projectReducer = createReducer(
   initialState,
-  on(ProjectPageActions.selectData, (state) => ({
-    ...state,
-  })),
-  on(ProjectPageActions.selectSuccess, (state, action) => ({
-    ...state,
-    data: [...action.data],
-  })),
-  on(ProjectPageActions.insertData, (state, action) => ({
-    ...state,
-  })),
-  on(ProjectPageActions.insertSuccess, (state, action) => ({
-    ...state,
-  })),
-  on(ProjectPageActions.updateData, (state, action) => ({
-    ...state,
-  })),
-  on(ProjectPageActions.updateSuccess, (state, action) => ({
-    ...state,
-  })),
-  on(ProjectPageActions.deleteData, (state, action) => ({
-    ...state,
-  })),
-  on(ProjectPageActions.deleteSuccess, (state, action) => ({
-    ...state,
-  }))
+  on(
+    ProjectPageActions.selectData,
+    (state): ProjectState => ({
+      ...state,
+    })
+  ),
+  on(
+    ProjectPageActions.selectSuccess,
+    (state, action): ProjectState => ({
+      ...state,
+      data: [...action.data],
+    })
+  ),
+  on(
+    ProjectPageActions.insertData,
+    (state): ProjectState => ({
+      ...state,
+    })
+  ),
+  on(
+    ProjectPageActions.insertSuccess,
+    (state): ProjectState => ({
+      ...state,
+    })
+  ),
+  on(
+    ProjectPageActions.updateData,
+    (state): ProjectState => ({
+      ...state,
+    })
+  ),
+  on(
+    ProjectPageActions.updateSuccess,
+    (state): ProjectState => ({
+      ...state,
+    })
+  ),
+  on(
+    ProjectPageActions.deleteData,
+    (state): ProjectState => ({
+      ...state,
+    })
+  ),
+  on(
+    ProjectPageActions.deleteSuccess,
+    (state): ProjectState => ({
+      ...state,
+    })
+  )
 );
 
-export function reducer(state: State | undefined, action: Action) {
+export function reducer(state: ProjectState | undefined, action: Action) {
   return projectReducer(state, action);
 }

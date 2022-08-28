@@ -1,6 +1,8 @@
 import { createSelector } from '@ngrx/store';
+import { Board } from '../../models/board.model';
+import { IssueTrackerState } from '../reducers/index.reducer';
 
 export const getBoards = createSelector(
-  (state: any) => state['issuetracker'],
-  (issuetracker: any) => issuetracker.boards.data
+  (state: { issuetracker: IssueTrackerState }) => state.issuetracker,
+  (issuetracker: IssueTrackerState): Board[] => issuetracker.boards.data
 );

@@ -1,29 +1,38 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import * as actions from '../actions/app.actions';
 
-interface ApplicationState {
+export interface AppState {
   isLoading: boolean;
   showSidebar: boolean;
 }
 
-export const initialState: ApplicationState = {
+const initialState: AppState = {
   isLoading: true,
   showSidebar: true,
 };
 
 export const appReducer = createReducer(
   initialState,
-  on(actions.setIsLoading, (state, action) => ({
-    ...state,
-    isLoading: action.isLoading,
-  })),
-  on(actions.toggleSidebar, (state) => ({
-    ...state,
-    showSidebar: !state.showSidebar,
-  })),
-  on(actions.hideSidebar, (state) => ({
-    ...state,
-    showSidebar: false,
-  }))
+  on(
+    actions.setIsLoading,
+    (state, action): AppState => ({
+      ...state,
+      isLoading: action.isLoading,
+    })
+  ),
+  on(
+    actions.toggleSidebar,
+    (state): AppState => ({
+      ...state,
+      showSidebar: !state.showSidebar,
+    })
+  ),
+  on(
+    actions.hideSidebar,
+    (state): AppState => ({
+      ...state,
+      showSidebar: false,
+    })
+  )
 );

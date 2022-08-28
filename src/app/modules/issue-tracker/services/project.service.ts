@@ -7,7 +7,7 @@ import {
 import firebase from 'firebase/compat/app';
 import { v4 as uuidv4 } from 'uuid';
 
-import { EMPTY, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Project } from '../models/project.model';
 
@@ -15,17 +15,17 @@ import { Project } from '../models/project.model';
   providedIn: 'root',
 })
 export class ProjectService {
-  projectsCollection: AngularFirestoreCollection<any>;
+  projectsCollection: AngularFirestoreCollection<Project>;
 
   constructor(private afs: AngularFirestore) {
     this.projectsCollection = this.afs.collection('projects');
   }
 
-  getUserId() {
+  getUserId(): string | undefined {
     return firebase.auth().currentUser?.uid;
   }
 
-  select(): Observable<any> {
+  select(): Observable<Project[]> {
     this.projectsCollection = this.afs.collection('projects', (ref) =>
       ref.where('userId', '==', this.getUserId()).orderBy('createDate', 'desc')
     );
@@ -34,13 +34,12 @@ export class ProjectService {
   }
 
   create(project: Project): Observable<Project> {
-    let id = uuidv4();
-    let userId = firebase.auth().currentUser?.uid;
+    const id = uuidv4();
 
     project = {
-      id: id,
+      id,
       ...project,
-      userId: userId,
+      userId: this.getUserId(),
       createDate: firebase.firestore.FieldValue.serverTimestamp(),
     };
 

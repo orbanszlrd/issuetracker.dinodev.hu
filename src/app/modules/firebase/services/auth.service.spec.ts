@@ -10,7 +10,7 @@ import { FirebaseModule } from '../firebase.module';
 import firebase from 'firebase/compat/app';
 
 import { AuthService } from './auth.service';
-import { User } from './user.model';
+import { User } from '../models/user.model';
 import { of } from 'rxjs';
 
 describe('AuthService', () => {
@@ -22,7 +22,14 @@ describe('AuthService', () => {
   const dummyUser: User = {
     uid: '000000000000000000',
     email: 'user@email.com',
+    displayName: null,
+    photoURL: null,
   };
+
+  const dummyPromise: Promise<void> = new Promise<void>((resolve, reject) => {
+    resolve();
+    reject();
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -40,7 +47,9 @@ describe('AuthService', () => {
           credential: {
             providerId: 'google.com',
             signInMethod: 'password',
-            toJSON() {},
+            toJSON() {
+              return {};
+            },
           },
           operationType: null,
           user: {
@@ -55,15 +64,10 @@ describe('AuthService', () => {
       })
     );
 
-    spyOn(afAuth, 'signOut').and.returnValue(
-      new Promise<void>((resolve, reject) => {
-        resolve();
-        reject();
-      })
-    );
+    spyOn(afAuth, 'signOut').and.returnValue(dummyPromise);
 
     spyOn(afs, 'doc').and.returnValue({
-      set: (data) => {},
+      set: (_data: User) => dummyPromise,
       valueChanges: () => of(dummyUser),
     } as AngularFirestoreDocument<User>);
   });

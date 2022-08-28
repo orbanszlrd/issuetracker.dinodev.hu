@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { AuthGuard } from './modules/firebase/services/auth.guard';
+import { AuthGuard } from './modules/firebase/guards/auth.guard';
 
 const routes: Routes = [
   {

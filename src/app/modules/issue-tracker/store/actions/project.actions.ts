@@ -1,12 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 
 import { Project } from '../../models/project.model';
+import { ProjectState } from '../reducers/project.reducer';
 
 export const selectData = createAction('[Projects Page] Select data');
 
 export const selectSuccess = createAction(
   '[Projects Page] Select data success',
-  props<{ data: Project[] }>()
+  props<ProjectState>()
 );
 
 export const insertData = createAction(

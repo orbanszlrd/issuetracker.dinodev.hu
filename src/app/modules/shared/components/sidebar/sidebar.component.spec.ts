@@ -5,7 +5,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { FirebaseModule } from 'src/app/modules/firebase/firebase.module';
 import { AuthService } from 'src/app/modules/firebase/services/auth.service';
-import { User } from 'src/app/modules/firebase/services/user.model';
+import { User } from 'src/app/modules/firebase/models/user.model';
 import { PrimeModule } from 'src/app/modules/prime/prime.module';
 
 import { SidebarComponent } from './sidebar.component';

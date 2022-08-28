@@ -15,11 +15,11 @@ import { Board } from '../models/board.model';
   providedIn: 'root',
 })
 export class BoardService {
-  boardsCollection: AngularFirestoreCollection<any> | undefined;
+  boardsCollection: AngularFirestoreCollection<Board> | undefined;
 
   constructor(private afs: AngularFirestore) {}
 
-  select(projectId: string): Observable<any> {
+  select(projectId: string): Observable<Board[]> {
     this.boardsCollection = this.afs
       .collection('projects')
       .doc(projectId)
@@ -58,7 +58,7 @@ export class BoardService {
     return of(board);
   }
 
-  delete(board: Board): Observable<any> {
+  delete(board: Board): Observable<Board> {
     this.boardsCollection = this.afs
       .collection('projects')
       .doc(board.projectId)

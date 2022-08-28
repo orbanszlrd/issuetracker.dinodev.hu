@@ -6,7 +6,8 @@ import { MenuItem } from 'primeng/api';
 
 import * as appSelectors from '../../../../store/selectors/app.selectors';
 import { AuthService } from 'src/app/modules/firebase/services/auth.service';
-import { User } from 'src/app/modules/firebase/services/user.model';
+import { User } from 'src/app/modules/firebase/models/user.model';
+import { AppState } from 'src/app/store/reducers/app.reducer';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,7 +21,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   menuItems: MenuItem[] = [];
 
-  constructor(private auth: AuthService, private store: Store) {}
+  constructor(
+    private auth: AuthService,
+    private store: Store<{ app: AppState }>
+  ) {}
 
   generateMenu(user: User | null | undefined) {
     if (user) {

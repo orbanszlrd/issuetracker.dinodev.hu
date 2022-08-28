@@ -16,7 +16,7 @@ import { Issue } from '../models/issue.model';
   providedIn: 'root',
 })
 export class IssueService {
-  issuesCollection: AngularFirestoreCollection<any>;
+  issuesCollection: AngularFirestoreCollection<Issue>;
 
   constructor(private afs: AngularFirestore) {
     this.issuesCollection = this.afs.collection('issues');
@@ -26,7 +26,7 @@ export class IssueService {
     return firebase.auth().currentUser?.uid;
   }
 
-  select(): Observable<any> {
+  select(): Observable<Issue[]> {
     this.issuesCollection = this.afs.collection('issues', (ref) =>
       ref.where('userId', '==', this.getUserId()).orderBy('createDate', 'desc')
     );

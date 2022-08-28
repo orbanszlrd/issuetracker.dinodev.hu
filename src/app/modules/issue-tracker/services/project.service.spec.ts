@@ -12,20 +12,18 @@ describe('ProjectService', () => {
 
   const afsSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
 
+  const dummyPromise: Promise<void> = new Promise((resolve, _reject) => {
+    resolve();
+  });
+
   beforeEach(() => {
     TestBed.configureTestingModule({});
     afsSpy.collection.and.returnValue({
       valueChanges: () => of({}),
-      doc: (id: string) => {
+      doc: (_id: string) => {
         return {
-          set: (project: Project) =>
-            new Promise((resolve, reject) => {
-              resolve();
-            }),
-          delete: () =>
-            new Promise((resolve, reject) => {
-              resolve();
-            }),
+          set: (_project: Project) => dummyPromise,
+          delete: () => dummyPromise,
         };
       },
     } as AngularFirestoreCollection);
@@ -39,6 +37,11 @@ describe('ProjectService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should return the userId', () => {
+    let userId = service.getUserId();
+    expect(userId).toBeDefined();
   });
 
   it('should select the collection of projects', () => {

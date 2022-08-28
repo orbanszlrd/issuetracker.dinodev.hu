@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { Board } from '../../models/board.model';
+import { BoardState } from '../reducers/board.reducer';
 
 export const selectData = createAction(
   '[Boards Page] Select data',
@@ -9,7 +10,7 @@ export const selectData = createAction(
 
 export const selectSuccess = createAction(
   '[Boards Page] Select data success',
-  props<{ data: Board[] }>()
+  props<BoardState>()
 );
 
 export const insertData = createAction(

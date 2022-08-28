@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { of } from 'rxjs';
 import { PrimeModule } from 'src/app/modules/prime/prime.module';
 import { Project } from '../../models/project.model';
 

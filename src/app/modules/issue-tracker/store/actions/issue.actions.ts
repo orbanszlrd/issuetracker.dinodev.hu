@@ -1,12 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 
 import { Issue } from '../../models/issue.model';
+import { IssueState } from '../reducers/issue.reducer';
 
 export const selectData = createAction('[Issues Page] Select data');
 
 export const selectSuccess = createAction(
   '[Issues Page] Select data success',
-  props<{ data: Issue[] }>()
+  props<IssueState>()
 );
 
 export const insertData = createAction(

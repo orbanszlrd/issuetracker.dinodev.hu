@@ -9,6 +9,7 @@ import { Board } from '../../models/board.model';
 import * as ProjectSelectors from '../../store/selectors/project.selectors';
 import * as BoardSelectors from '../../store/selectors/board.selectors';
 import * as BoardPageActions from '../../store/actions/board.actions';
+import { IssueTrackerState } from '../../store/reducers/index.reducer';
 
 @Component({
   selector: 'app-boards',
@@ -35,7 +36,10 @@ export class BoardsComponent implements OnInit, OnDestroy {
     columns: [],
   };
 
-  constructor(private route: ActivatedRoute, private store: Store) {}
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<{ issuetracker: IssueTrackerState }>
+  ) {}
 
   ngOnInit(): void {
     let projectSlug = this.route.snapshot.paramMap.get('projectSlug');

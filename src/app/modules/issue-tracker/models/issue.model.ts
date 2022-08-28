@@ -1,5 +1,3 @@
-import { Label } from './label.model';
-
 export interface Issue {
   id?: string;
   title: string;

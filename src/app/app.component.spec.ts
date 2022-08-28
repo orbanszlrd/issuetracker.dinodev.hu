@@ -1,17 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Store } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
+import { FirebaseModule } from './modules/firebase/firebase.module';
+import { PrimeModule } from './modules/prime/prime.module';
 import { ToolbarComponent } from './modules/shared/components/toolbar/toolbar.component';
 import { FooterComponent } from './modules/shared/components/footer/footer.component';
 import { LoaderComponent } from './modules/shared/components/loader/loader.component';
 import { SidebarComponent } from './modules/shared/components/sidebar/sidebar.component';
-import { PrimeModule } from './modules/prime/prime.module';
-import { Store } from '@ngrx/store';
-import { FirebaseModule } from './modules/firebase/firebase.module';
 
 describe('AppComponent', () => {
   let store: Store;

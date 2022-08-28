@@ -1,11 +1,12 @@
 import { createSelector } from '@ngrx/store';
+import { AppState } from '../reducers/app.reducer';
 
 export const isLoading = createSelector(
-  (state: any) => state['app'],
+  (state: { app: AppState }) => state.app,
   (app) => app.isLoading
 );
 
 export const showSidebar = createSelector(
-  (state: any) => state['app'],
-  (app) => app.showSidebar
+  (state: { app: AppState }) => state.app,
+  (app: AppState) => app.showSidebar
 );

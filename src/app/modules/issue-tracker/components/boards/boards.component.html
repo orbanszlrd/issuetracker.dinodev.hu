@@ -7,11 +7,11 @@
     <p-table [value]="boards" class="o-table">
       <ng-template pTemplate="header">
         <tr>
-          <th class="o-title">Title</th>
-          <th class="o-description">Description</th>
-          <th class="o-date">Create Date</th>
-          <th class="o-icon">Edit</th>
-          <th class="o-icon">Delete</th>
+          <th class="o-title" scope="col">Title</th>
+          <th class="o-description" scope="col">Description</th>
+          <th class="o-date" scope="col">Create Date</th>
+          <th class="o-icon" scope="col">Edit</th>
+          <th class="o-icon" scope="col">Delete</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-board>

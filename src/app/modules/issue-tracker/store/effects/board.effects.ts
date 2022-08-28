@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError, take } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
+import { Board } from '../../models/board.model';
 import { BoardService } from '../../services/board.service';
 import * as BoardPageActions from '../actions/board.actions';
 
@@ -12,13 +13,13 @@ export class BoardEffects {
       ofType(BoardPageActions.selectData),
       mergeMap((props) => {
         return this.boardService.select(props.projectId).pipe(
-          map((data) => {
+          map((boards: Board[]) => {
             return {
               type: BoardPageActions.selectSuccess.type,
-              data: data,
+              data: boards,
             };
           }),
-          catchError((err) => {
+          catchError(() => {
             return EMPTY;
           })
         );
@@ -31,8 +32,7 @@ export class BoardEffects {
       ofType(BoardPageActions.insertData),
       mergeMap((props) => {
         return this.boardService.create(props.board).pipe(
-          map((board) => {
-            //           console.log(board);
+          map((_board: Board) => {
             return {
               type: BoardPageActions.insertSuccess.type,
             };
@@ -48,8 +48,7 @@ export class BoardEffects {
       ofType(BoardPageActions.updateData),
       mergeMap((props) => {
         return this.boardService.update(props.board).pipe(
-          map((board) => {
-            //           console.log(board);
+          map((_board: Board) => {
             return {
               type: BoardPageActions.updateSuccess.type,
             };
@@ -65,8 +64,7 @@ export class BoardEffects {
       ofType(BoardPageActions.deleteData),
       mergeMap((props) => {
         return this.boardService.delete(props.board).pipe(
-          map((board) => {
-            //            console.log(board);
+          map((_board: Board) => {
             return {
               type: BoardPageActions.deleteSuccess.type,
             };

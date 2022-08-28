@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Project } from '../../models/project.model';
 import * as ProjectSelectors from '../../store/selectors/project.selectors';
 import * as ProjectPageActions from '../../store/actions/project.actions';
+import { IssueTrackerState } from '../../store/reducers/index.reducer';
 
 @Component({
   selector: 'app-projects',
@@ -21,7 +22,7 @@ export class ProjectsComponent implements OnInit {
 
   project: Project = { slug: '', title: '', description: '' };
 
-  constructor(private store: Store) {
+  constructor(private store: Store<{ issuetracker: IssueTrackerState }>) {
     this.projects$ = this.store.select(ProjectSelectors.getProjects);
   }
 

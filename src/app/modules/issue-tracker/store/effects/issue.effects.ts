@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
+import { Issue } from '../../models/issue.model';
 import { IssueService } from '../../services/issue.service';
 import * as IssuePageActions from '../actions/issue.actions';
 
@@ -12,10 +13,10 @@ export class IssueEffects {
       ofType(IssuePageActions.selectData),
       mergeMap(() => {
         return this.issueService.select().pipe(
-          map((data) => {
+          map((issues: Issue[]) => {
             return {
               type: IssuePageActions.selectSuccess.type,
-              data: data,
+              data: issues,
             };
           }),
           catchError(() => EMPTY)
@@ -29,15 +30,12 @@ export class IssueEffects {
       ofType(IssuePageActions.insertData),
       mergeMap((props) => {
         return this.issueService.create(props.issue).pipe(
-          map((issue) => {
-            console.log(issue);
+          map((_issue: Issue) => {
             return {
               type: IssuePageActions.insertSuccess.type,
             };
           }),
-          catchError((err) => {
-            console.log(err);
-
+          catchError(() => {
             return EMPTY;
           })
         );
@@ -50,15 +48,12 @@ export class IssueEffects {
       ofType(IssuePageActions.updateData),
       mergeMap((props) => {
         return this.issueService.update(props.issue).pipe(
-          map((issue) => {
-            console.log(issue);
+          map((_issue: Issue) => {
             return {
               type: IssuePageActions.updateSuccess.type,
             };
           }),
-          catchError((err) => {
-            console.log(err);
-
+          catchError(() => {
             return EMPTY;
           })
         );
@@ -71,8 +66,7 @@ export class IssueEffects {
       ofType(IssuePageActions.deleteData),
       mergeMap((props) => {
         return this.issueService.delete(props.issue).pipe(
-          map((props) => {
-            //            console.log(props);
+          map((_issue: Issue) => {
             return {
               type: IssuePageActions.deleteSuccess.type,
             };
