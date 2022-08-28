@@ -1,19 +1,7 @@
-<div id="myDiv"></div>
-
-<p-sidebar
-  [(visible)]="showSidebar"
-  [showCloseIcon]="false"
-  styleClass="p-sidebar-sm"
-  [style]="{
+<p-sidebar [(visible)]="showSidebar" [showCloseIcon]="false" styleClass="p-sidebar-sm" [style]="{
     marginTop: '4em',
     width: '12em',
     backgroundColor: '#fff'
-  }"
-  [modal]="false"
-  [autoZIndex]="false"
->
-  <p-menu
-    [model]="menuItems"
-    [style]="{ margin: 0, width: '100%', border: '0' }"
-  ></p-menu>
+  }" [modal]="false" [autoZIndex]="false">
+  <p-menu [model]="menuItems" [style]="{ margin: 0, width: '100%', border: '0' }"></p-menu>
 </p-sidebar>

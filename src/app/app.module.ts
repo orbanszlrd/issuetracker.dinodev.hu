@@ -19,6 +19,7 @@ import { appReducer, AppState } from './store/reducers/app.reducer';
 import { IndexEffects } from './store/effects/index.effects';
 import { HomeComponent } from './components/home/home.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export const reducers: ActionReducerMap<{ app: AppState }> = {
   app: appReducer,
@@ -45,6 +46,12 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [],
