@@ -1,10 +1,10 @@
-{ 
+{
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -13,8 +13,9 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2022",
     "module": "es2020",
+    "useDefineForClassFields": false,
     "lib": [
       "es2018",
       "dom"
@@ -25,5 +26,7 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "exclude": ["./cypress.config.ts"]
+  "exclude": [
+    "./cypress.config.ts"
+  ]
 }
